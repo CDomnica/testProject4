@@ -149,7 +149,7 @@ public class Receptie extends JPanel {
 					
 					pst.close();
 				
-					String query2="insert into Programari (Nume, Prenume, Cabinet, Doctor, DataSiOra, Laborator) values(?,?,?,?,?,?)";
+					String query2="insert into Programari (Nume, Prenume, Cabinet, Doctor, DataSiOra, Laborator, CNP) values(?,?,?,?,?,?,?)";
 					PreparedStatement pst2 = connection.prepareStatement(query2);
 					pst2.setString(1,txtNume.getText());
 					pst2.setString(2,textPrenume.getText());
@@ -157,6 +157,7 @@ public class Receptie extends JPanel {
 					pst2.setString(4,textDoctor.getText());
 					pst2.setString(5,textData.getText());
 					pst2.setString(6,textLab.getText());
+					pst2.setString(7,textCNP.getText());
 					
 					pst2.execute();
 					
@@ -171,7 +172,7 @@ public class Receptie extends JPanel {
 			}
 		});
 		btnNewButton_Salveaza.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton_Salveaza.setBounds(619, 223, 117, 47);
+		btnNewButton_Salveaza.setBounds(570, 222, 140, 23);
 		panel.add(btnNewButton_Salveaza);
 		
 		JLabel Label_Plata = new JLabel("TOTAL PLATA");
@@ -205,7 +206,7 @@ public class Receptie extends JPanel {
 		btnNewButton_RaportProgramari.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					String query="SELECT nume, prenume, Cabinet, Doctor, DataSiOra, Laborator FROM Programari";
+					String query="SELECT nume, prenume, Cabinet, Doctor, DataSiOra, Laborator, CNP FROM Programari";
 					PreparedStatement pst = connection.prepareStatement(query);
 					ResultSet rs = pst.executeQuery();
 					table.setModel(DbUtils.resultSetToTableModel(rs));
@@ -252,6 +253,71 @@ public class Receptie extends JPanel {
 		textLab.setBounds(549, 170, 198, 20);
 		panel.add(textLab);
 		textLab.setColumns(10);
+		
+		JButton btnNewButton_Actualizeaza = new JButton("ACTUALIZEAZA");
+		btnNewButton_Actualizeaza.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{
+					String query=" Update Pacienti set CNP='"+textCNP.getText()+"', Nume='"+txtNume.getText()+"', Prenume='"+textPrenume.getText()+"', Adresa='"+textAdresa.getText()+"', Cabinet='"+textCabinet.getText()+"', Doctor='"+textDoctor.getText()+"', DataSiOra='"+textData.getText()+"' where CNP='"+textCNP.getText()+"'";
+					PreparedStatement pst = connection.prepareStatement(query);
+					
+					pst.execute();
+					
+					JOptionPane.showMessageDialog(null, "Datele au fost Actualizate!");
+					
+					pst.close();
+				
+					String query2="Update Programari set CNP='"+textCNP.getText()+"', Nume='"+txtNume.getText()+"', Prenume='"+textPrenume.getText()+"', Cabinet='"+textCabinet.getText()+"', Doctor='"+textDoctor.getText()+"', DataSiOra='"+textData.getText()+"', Laborator='"+textLab.getText()+"' where CNP='"+textCNP.getText()+"'";
+					PreparedStatement pst2 = connection.prepareStatement(query2);
+					
+					pst2.execute();
+					
+					//JOptionPane.showMessageDialog(null, "Datele au fost Actualizate!");
+					
+					pst2.close();
+					
+				}catch(Exception ex) 
+				{
+					ex.printStackTrace();
+				}
+				
+			}
+		});
+		btnNewButton_Actualizeaza.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNewButton_Actualizeaza.setBounds(570, 256, 140, 23);
+		panel.add(btnNewButton_Actualizeaza);
+		
+		JButton btnNewButton_Sterge = new JButton("STERGE");
+		btnNewButton_Sterge.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{
+					String query="delete from Pacienti where CNP='"+textCNP.getText()+"'";
+					PreparedStatement pst = connection.prepareStatement(query);
+					
+					pst.execute();
+					
+					JOptionPane.showMessageDialog(null, "Datele au fost Sterse!");
+					
+					pst.close();
+				
+					String query2="delete from Programari where CNP='"+textCNP.getText()+"'";
+					PreparedStatement pst2 = connection.prepareStatement(query2);
+					
+					pst2.execute();
+					
+					//JOptionPane.showMessageDialog(null, "Datele au fost Actualizate!");
+					
+					pst2.close();
+					
+				}catch(Exception ex) 
+				{
+					ex.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_Sterge.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNewButton_Sterge.setBounds(570, 290, 140, 23);
+		panel.add(btnNewButton_Sterge);
 		
 	}
 }
