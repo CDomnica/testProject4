@@ -23,6 +23,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.Color;
 
 public class Receptie extends JPanel {
 	private JTextField txtNume;
@@ -40,6 +45,7 @@ public class Receptie extends JPanel {
 	private JTextField textCabinet;
 	private JTextField textDoctor;
 	private JTextField textLab;
+	private JTextField textCautaCNP;
 	public Receptie() {
 		connection=sqliteConnection.dbConnector();
 		setLayout(new BorderLayout(0, 0));
@@ -191,6 +197,13 @@ public class Receptie extends JPanel {
 		JButton btnNewButton_Chitanta = new JButton("GENEREAZA CHITANTA");
 		btnNewButton_Chitanta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + " C://Users//StefanDomnica//Desktop//chitanta.gif");
+					
+				} catch(Exception ex) 
+				{
+					ex.printStackTrace();
+				}
 			}
 		});
 		btnNewButton_Chitanta.setFont(new Font("Arial", Font.BOLD, 14));
@@ -226,11 +239,42 @@ public class Receptie extends JPanel {
 		panel.add(btnNewButton_RaportProgramari);
 		
 		JScrollPane scrollPane = new JScrollPane(table);
-		scrollPane.setBounds(34, 362, 745, 211);
+		scrollPane.setBounds(34, 362, 745, 139);
 		panel.add(scrollPane);
 		scrollPane.setViewportView(table);
 		 
 		table = new JTable();
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try{
+					int row = table.getSelectedRow();
+					String Nume_=(table.getModel().getValueAt(row, 0)).toString();
+					
+					String query="select * from Pacienti where Nume='"+Nume_+"' ";
+					PreparedStatement pst = connection.prepareStatement(query);
+					ResultSet rs = pst.executeQuery();
+					
+					while(rs.next()){
+						txtNume.setText(rs.getString("Nume"));
+						textPrenume.setText(rs.getString("Prenume"));
+						textCNP.setText(rs.getString("CNP"));
+						textAdresa.setText(rs.getString("Adresa"));
+						textData.setText(rs.getString("DataSiOra"));
+						textCabinet.setText(rs.getString("Cabinet"));
+						textDoctor.setText(rs.getString("Doctor"));
+						textLab.setText(rs.getString("Laborator"));
+					}
+					
+					pst.close();
+			
+				}catch(Exception ex) 
+				{
+					ex.printStackTrace();
+				}
+			}
+		});
+		
 		scrollPane.setViewportView(table);
 		
 		textCabinet = new JTextField();
@@ -287,9 +331,11 @@ public class Receptie extends JPanel {
 		btnNewButton_Actualizeaza.setBounds(570, 256, 140, 23);
 		panel.add(btnNewButton_Actualizeaza);
 		
-		JButton btnNewButton_Sterge = new JButton("STERGE");
+		JButton btnNewButton_Sterge = new JButton("STERGE ");
 		btnNewButton_Sterge.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				int p = JOptionPane.showConfirmDialog(null, "Esti sigur ca vrei sa stergi datele pacientului?", "Sterge", JOptionPane.YES_NO_OPTION);
+				if (p==0){
 				try{
 					String query="delete from Pacienti where CNP='"+textCNP.getText()+"'";
 					PreparedStatement pst = connection.prepareStatement(query);
@@ -304,20 +350,136 @@ public class Receptie extends JPanel {
 					PreparedStatement pst2 = connection.prepareStatement(query2);
 					
 					pst2.execute();
-					
-					//JOptionPane.showMessageDialog(null, "Datele au fost Actualizate!");
-					
 					pst2.close();
+					
+
+					String query3="delete from ProgramariAnalize where CNP='"+textCNP.getText()+"'";
+					PreparedStatement pst3 = connection.prepareStatement(query3);
+					
+					pst3.execute();	
+					pst3.close();
+					
+					String query4="delete from ProgramariLaborator where CNP='"+textCNP.getText()+"'";
+					PreparedStatement pst4 = connection.prepareStatement(query4);
+					
+					pst4.execute();	
+					pst4.close();
+					
 					
 				}catch(Exception ex) 
 				{
 					ex.printStackTrace();
+				}
 				}
 			}
 		});
 		btnNewButton_Sterge.setFont(new Font("Arial", Font.BOLD, 14));
 		btnNewButton_Sterge.setBounds(570, 290, 140, 23);
 		panel.add(btnNewButton_Sterge);
+		
+		textCautaCNP = new JTextField();
+		textCautaCNP.setBackground(SystemColor.info);
+		textCautaCNP.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				try{
+					String query = "select * from Pacienti where CNP=?";
+					PreparedStatement pst = connection.prepareStatement(query);
+					pst.setString(1, textCautaCNP.getText());
+					ResultSet rs = pst.executeQuery();
+					if(rs.next()){
+					String add1 = rs.getString("Nume");
+					txtNume.setText(add1);
+					String add2 = rs.getString("Prenume");
+					textPrenume.setText(add2);
+					String add3 = rs.getString("CNP");
+					textCNP.setText(add3);
+					String add4 = rs.getString("Adresa");
+					textAdresa.setText(add4);
+					String add5 = rs.getString("DataSiOra");
+					textData.setText(add5);
+					String add6 = rs.getString("Cabinet");
+					textCabinet.setText(add6);
+					String add7 = rs.getString("Doctor");
+					textDoctor.setText(add7);
+					String add8 = rs.getString("Laborator");
+					textLab.setText(add8);
+					
+					
+					}
+				}catch(Exception ex) 
+				{
+					ex.printStackTrace();
+				}
+			}
+		});
+		textCautaCNP.setBounds(34, 329, 216, 20);
+		panel.add(textCautaCNP);
+		textCautaCNP.setColumns(10);
+		
+		JButton btnNewButton_StergeProgramare = new JButton("Sterge Programare");
+		btnNewButton_StergeProgramare.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int p = JOptionPane.showConfirmDialog(null, "Esti sigur ca vrei sa stergi programarea?", "Sterge", JOptionPane.YES_NO_OPTION);
+				if(p==0){
+				try {
+				
+					String query = "delete from Programari where CNP=?";
+					PreparedStatement pst = connection.prepareStatement(query);
+					pst.setString(1, textCNP.getText());
+					pst.execute();
+					
+					String query2 = "delete from ProgramariAnalize where CNP=?";
+					PreparedStatement pst2 = connection.prepareStatement(query2);
+					pst2.setString(1, textCNP.getText());
+					pst2.execute();
+					
+					String query3 = "delete from ProgramariAnalize where CNP=?";
+					PreparedStatement pst3 = connection.prepareStatement(query3);
+					pst3.setString(1, textCNP.getText());
+					pst3.execute();
+					
+					JOptionPane.showMessageDialog(null, "Programare Stearsa!");
+					
+				} catch(Exception ex) 
+				{
+					ex.printStackTrace();
+				}
+			}
+			}
+		});
+		btnNewButton_StergeProgramare.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNewButton_StergeProgramare.setBounds(583, 522, 175, 23);
+		panel.add(btnNewButton_StergeProgramare);
+		
+		JButton btnNewButton_Clear = new JButton("CLEAR");
+		btnNewButton_Clear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				txtNume.setText("");
+				textPrenume.setText("");
+				textCNP.setText("");
+				textAdresa.setText("");
+				textData.setText("");
+				textCabinet.setText("");
+				textDoctor.setText("");
+				textLab.setText("");
+			}
+		});
+		btnNewButton_Clear.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNewButton_Clear.setBounds(44, 522, 140, 23);
+		panel.add(btnNewButton_Clear);
+		
+		JButton btnNewButton_Inapoi = new JButton("Inapoi");
+		btnNewButton_Inapoi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PanelOptions options = new PanelOptions();
+				Login.frame.setContentPane(options);
+				Login.frame.invalidate();
+				Login.frame.validate();
+			}
+		});
+		btnNewButton_Inapoi.setBounds(54, 554, 89, 23);
+		panel.add(btnNewButton_Inapoi);
 		
 	}
 }
