@@ -1,5 +1,3 @@
-
-
 package testProject4;
 
 import javax.swing.JPanel;
@@ -228,7 +226,7 @@ public class LaboratorAnalize extends JPanel {
 		add(btnNewButton_RapProg);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(54, 376, 734, 198);
+		scrollPane.setBounds(54, 376, 734, 135);
 		add(scrollPane);
 		
 		table = new JTable();
@@ -260,10 +258,21 @@ public class LaboratorAnalize extends JPanel {
 		});
 		scrollPane.setViewportView(table);
 		
+		JButton btnNewButton_inapoi = new JButton("Inapoi");
+		btnNewButton_inapoi.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				PanelOptions options = new PanelOptions();
+				Login.frame.setContentPane(options);
+				Login.frame.invalidate();
+				Login.frame.validate();
+			}
+		});
+		btnNewButton_inapoi.setBounds(55, 539, 89, 23);
+		add(btnNewButton_inapoi);
+		
 		fillComboBoxDoctor();
 		fillComboBoxCNP();
 		fillComboBoxRecoltare();
 		fillComboBoxAnalize();
 	}
 }
-
