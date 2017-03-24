@@ -1,4 +1,3 @@
-package testProject4;
 
 import java.sql.*;
 import javax.swing.JPanel;
