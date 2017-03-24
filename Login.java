@@ -105,7 +105,7 @@ public class Login {
 						frame.invalidate();
 						frame.validate();
 
-					} else if (count < 1){
+					} else if (count > 1){
 						JOptionPane.showMessageDialog(null, "Duplicate user and password");
 					} else {
 						JOptionPane.showMessageDialog(null, "Usename and password is incorrect");
