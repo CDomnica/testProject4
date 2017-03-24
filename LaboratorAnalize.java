@@ -1,4 +1,3 @@
-package testProject4;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
