@@ -3,6 +3,7 @@
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +16,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.Font;
+import java.awt.Color;
 
 public class Login {
 
@@ -40,12 +44,16 @@ public class Login {
 	Connection connection=null;
 	private JTextField txtUsername;
 	private JPasswordField passwordField;
+	static JTextField txtConexiuneLaBaza = new JTextField();
+	static String dbUrl = "D:\\workspace\\testProject4\\src\\poli.sqlite";
+	
 	/**
 	 * Create the application.
 	 */
 	public Login() {
 		initialize();
-		connection=sqliteConnection.dbConnector();
+		
+		
 	}
 
 	/**
@@ -119,7 +127,41 @@ public class Login {
 		});
 		btnLogin.setBounds(296, 246, 131, 60);
 		panel.add(btnLogin);
+		
+		JButton btnNewButton = new JButton("Alege baza de date");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser chooser = new JFileChooser();
+				chooser.setDialogTitle("Selectati baza de date .sqlite");
+				int returnVal = chooser.showOpenDialog(null);
+				File file = chooser.getSelectedFile();
+				dbUrl = file.getAbsolutePath();
+							
+			}
+		});
+		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 16));
+		btnNewButton.setBounds(296, 317, 177, 43);
+		panel.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("Conecteaza baza de date");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				connection=sqliteConnection.dbConnector();
+			}
+		});
+		btnNewButton_1.setFont(new Font("SansSerif", Font.BOLD, 11));
+		btnNewButton_1.setBounds(296, 371, 177, 43);
+		panel.add(btnNewButton_1);
+		
+		
+		txtConexiuneLaBaza.setBackground(Color.RED);
+		txtConexiuneLaBaza.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 11));
+		txtConexiuneLaBaza.setText("Conexiune la baza de date: NU");
+		txtConexiuneLaBaza.setBounds(296, 434, 177, 20);
+		panel.add(txtConexiuneLaBaza);
+		txtConexiuneLaBaza.setColumns(10);
 		frame.setBounds(100, 100, 860, 660);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	
 }
