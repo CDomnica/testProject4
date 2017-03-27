@@ -134,9 +134,10 @@ public class Login {
 				JFileChooser chooser = new JFileChooser();
 				chooser.setDialogTitle("Selectati baza de date .sqlite");
 				int returnVal = chooser.showOpenDialog(null);
-				File file = chooser.getSelectedFile();
-				dbUrl = file.getAbsolutePath();
-							
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					File file = chooser.getSelectedFile();
+					dbUrl = file.getAbsolutePath();
+				}	
 			}
 		});
 		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 16));
