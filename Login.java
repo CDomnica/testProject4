@@ -141,7 +141,7 @@ public class Login {
 			}
 		});
 		btnNewButton.setFont(new Font("SansSerif", Font.BOLD, 16));
-		btnNewButton.setBounds(296, 317, 177, 43);
+		btnNewButton.setBounds(242, 374, 220, 37);
 		panel.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Conecteaza baza de date");
@@ -150,15 +150,15 @@ public class Login {
 				connection=sqliteConnection.dbConnector();
 			}
 		});
-		btnNewButton_1.setFont(new Font("SansSerif", Font.BOLD, 11));
-		btnNewButton_1.setBounds(296, 371, 177, 43);
+		btnNewButton_1.setFont(new Font("SansSerif", Font.BOLD, 14));
+		btnNewButton_1.setBounds(242, 434, 220, 40);
 		panel.add(btnNewButton_1);
 		
 		
 		txtConexiuneLaBaza.setBackground(Color.RED);
-		txtConexiuneLaBaza.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 11));
+		txtConexiuneLaBaza.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 14));
 		txtConexiuneLaBaza.setText("Conexiune la baza de date: NU");
-		txtConexiuneLaBaza.setBounds(296, 434, 177, 20);
+		txtConexiuneLaBaza.setBounds(250, 496, 212, 37);
 		panel.add(txtConexiuneLaBaza);
 		txtConexiuneLaBaza.setColumns(10);
 		frame.setBounds(100, 100, 860, 660);
