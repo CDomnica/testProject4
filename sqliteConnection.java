@@ -1,25 +1,39 @@
 
 
+import java.awt.Color;
+import java.io.File;
 import java.sql.*;
 import javax.swing.*;
 
 public class sqliteConnection {
-	Connection con=null;
+	
 	public static Connection dbConnector() {
-		try {
-			//Class.forName("org.sqlite.JDBC");
-			//Conexiune windows
-			Connection con = DriverManager.getConnection("jdbc:sqlite:E:\\workspace\\testProject4\\src\\poli.sqlite");
-			//Conexiune linux
-			//Connection con = DriverManager.getConnection("jdbc:sqlite:/home/dom/workspace/testProject3/poli.sqlite");
-			JOptionPane.showMessageDialog(null, "Connection succesfull to database");
-			return con;
+		Connection con=null;
 		
-		} catch (Exception e){
-			JOptionPane.showMessageDialog(null, e);
-			return null;
+		File f = new File(Login.dbUrl);
+		if (f.exists()){
+			try {
 			
+			
+			con = DriverManager.getConnection("jdbc:sqlite:" + Login.dbUrl);
+			
+			//JOptionPane.showMessageDialog(null, "Connection succesfull to database");
+			Login.txtConexiuneLaBaza.setBackground(Color.GREEN);
+			Login.txtConexiuneLaBaza.setText("Conexiune la baza de date: DA");
+			return con;
+			} catch (SQLException e){
+			JOptionPane.showMessageDialog(null, e);
+			
+			
+			}
+			
+			
+		} else {
+			JOptionPane.showMessageDialog(null, "Nu exista fisier baza de date");
 		}
+		
+		return null;
+		
 
 		
 		
