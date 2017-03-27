@@ -1,4 +1,5 @@
 
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -21,18 +22,20 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class LaboratorAnalize extends JPanel {
 	private JTextField textField_nume;
 	private JTextField textField_prenume;
 	private JTextField textField_data;
 	private JComboBox comboBox_Doctor;
-	private JComboBox comboBox_CNP;
 	private JComboBox comboBox_Recoltare;
 	private JComboBox comboBox_Analize;
 	
 	Connection connection = null;
 	private JTable table;
+	private JTextField text_CautaCNP;
 	/**
 	 * Create the panel.
 	 */
@@ -52,21 +55,6 @@ public class LaboratorAnalize extends JPanel {
 		}
 	}
 	
-	public void fillComboBoxCNP(){
-		try{
-			
-			String query="select * from ProgramariAnalize ";
-			PreparedStatement pst = connection.prepareStatement(query);
-			ResultSet rs = pst.executeQuery();
-			while (rs.next()){
-				comboBox_CNP.addItem(rs.getString("CNP"));
-				
-			}
-		}catch(Exception ex) 
-		{
-			ex.printStackTrace();
-		}
-	}
 	
 	public void fillComboBoxRecoltare(){
 		try{
@@ -114,9 +102,9 @@ public class LaboratorAnalize extends JPanel {
 		lblNewLabel_Doctor.setBounds(10, 69, 78, 14);
 		add(lblNewLabel_Doctor);
 		
-		JLabel lblNewLabel_cnp = new JLabel("CNP");
+		JLabel lblNewLabel_cnp = new JLabel("Cauta CNP");
 		lblNewLabel_cnp.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_cnp.setBounds(10, 111, 46, 14);
+		lblNewLabel_cnp.setBounds(10, 111, 89, 14);
 		add(lblNewLabel_cnp);
 		
 		JLabel lblNewLabel_Nume = new JLabel("NUME");
@@ -126,7 +114,7 @@ public class LaboratorAnalize extends JPanel {
 		
 		textField_nume = new JTextField();
 		textField_nume.setBackground(SystemColor.info);
-		textField_nume.setBounds(66, 152, 185, 20);
+		textField_nume.setBounds(66, 152, 252, 20);
 		add(textField_nume);
 		textField_nume.setColumns(10);
 		
@@ -137,18 +125,18 @@ public class LaboratorAnalize extends JPanel {
 		
 		textField_prenume = new JTextField();
 		textField_prenume.setBackground(SystemColor.info);
-		textField_prenume.setBounds(90, 189, 161, 20);
+		textField_prenume.setBounds(90, 189, 228, 20);
 		add(textField_prenume);
 		textField_prenume.setColumns(10);
 		
-		JLabel lblNewLabel_Data = new JLabel("DATA");
+		JLabel lblNewLabel_Data = new JLabel("DATA/ORA");
 		lblNewLabel_Data.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_Data.setBounds(10, 228, 46, 14);
+		lblNewLabel_Data.setBounds(10, 228, 70, 14);
 		add(lblNewLabel_Data);
 		
 		textField_data = new JTextField();
 		textField_data.setBackground(SystemColor.info);
-		textField_data.setBounds(66, 226, 185, 20);
+		textField_data.setBounds(90, 226, 228, 20);
 		add(textField_data);
 		textField_data.setColumns(10);
 		
@@ -164,43 +152,17 @@ public class LaboratorAnalize extends JPanel {
 		
 		comboBox_Doctor = new JComboBox();
 		comboBox_Doctor.setBackground(SystemColor.info);
-		comboBox_Doctor.setBounds(79, 67, 172, 20);
+		comboBox_Doctor.setBounds(79, 67, 239, 20);
 		add(comboBox_Doctor);
-		
-	    comboBox_CNP = new JComboBox();
-	    comboBox_CNP.setBackground(SystemColor.info);
-	    comboBox_CNP.addActionListener(new ActionListener() {
-	    	public void actionPerformed(ActionEvent e) {
-	    		try{
-					String query="select * from ProgramariAnalize where CNP=?";
-					PreparedStatement pst = connection.prepareStatement(query);
-					pst.setString(1, (String)comboBox_CNP.getSelectedItem());
-					ResultSet rs = pst.executeQuery();
-					while(rs.next()){
-						textField_nume.setText(rs.getString("Nume"));
-						textField_prenume.setText(rs.getString("Prenume"));
-						textField_data.setText(rs.getString("Data"));
-					}
-					
-					pst.close();
-					
-				}catch(Exception ex) 
-				{
-					ex.printStackTrace();
-				}
-	    	}
-	    });
-		comboBox_CNP.setBounds(54, 109, 197, 20);
-		add(comboBox_CNP);
 		
 		comboBox_Recoltare = new JComboBox();
 		comboBox_Recoltare.setBackground(SystemColor.info);
-		comboBox_Recoltare.setBounds(109, 286, 128, 20);
+		comboBox_Recoltare.setBounds(109, 286, 209, 20);
 		add(comboBox_Recoltare);
 		
 		comboBox_Analize = new JComboBox();
 		comboBox_Analize.setBackground(SystemColor.info);
-		comboBox_Analize.setBounds(76, 257, 175, 20);
+		comboBox_Analize.setBounds(76, 257, 242, 20);
 		add(comboBox_Analize);
 		
 		JButton btnNewButton_RapProg = new JButton("Programari Analize");
@@ -257,7 +219,8 @@ public class LaboratorAnalize extends JPanel {
 		});
 		scrollPane.setViewportView(table);
 		
-		JButton btnNewButton_inapoi = new JButton("Inapoi");
+		JButton btnNewButton_inapoi = new JButton("INAPOI");
+		btnNewButton_inapoi.setFont(new Font("Arial", Font.BOLD, 14));
 		btnNewButton_inapoi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PanelOptions options = new PanelOptions();
@@ -269,8 +232,53 @@ public class LaboratorAnalize extends JPanel {
 		btnNewButton_inapoi.setBounds(55, 539, 89, 23);
 		add(btnNewButton_inapoi);
 		
+		text_CautaCNP = new JTextField();
+		text_CautaCNP.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				try{
+					String query = "select * from ProgramariAnalize where CNP=?";
+					PreparedStatement pst = connection.prepareStatement(query);
+					pst.setString(1, text_CautaCNP.getText());
+					ResultSet rs = pst.executeQuery();
+					if(rs.next()){
+					String add1 = rs.getString("Nume");
+					textField_nume.setText(add1);
+					String add2 = rs.getString("Prenume");
+					textField_prenume.setText(add2);
+					String add3 = rs.getString("Data");
+					textField_data.setText(add3);
+			
+					
+					}
+				}catch(Exception ex) 
+				{
+					ex.printStackTrace();
+				}
+			}
+		});
+		text_CautaCNP.setBackground(SystemColor.info);
+		text_CautaCNP.setBounds(90, 109, 228, 20);
+		add(text_CautaCNP);
+		text_CautaCNP.setColumns(10);
+		
+		JButton btnNewButton_RezAnalize = new JButton("REZULTATE ANALIZE");
+		btnNewButton_RezAnalize.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNewButton_RezAnalize.setBounds(552, 201, 185, 23);
+		add(btnNewButton_RezAnalize);
+		
+		JButton btnNewButton_Tipareste = new JButton("TIPARESTE ");
+		btnNewButton_Tipareste.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNewButton_Tipareste.setBounds(552, 253, 185, 23);
+		add(btnNewButton_Tipareste);
+		
+		JButton btnNewButton_Raportare = new JButton("RAPORTARE CNAS");
+		btnNewButton_Raportare.setFont(new Font("Arial", Font.BOLD, 14));
+		btnNewButton_Raportare.setBounds(552, 66, 185, 59);
+		add(btnNewButton_Raportare);
+		
 		fillComboBoxDoctor();
-		fillComboBoxCNP();
+		//fillComboBoxCNP();
 		fillComboBoxRecoltare();
 		fillComboBoxAnalize();
 	}
