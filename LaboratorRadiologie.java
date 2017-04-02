@@ -1,5 +1,4 @@
 
-
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -22,6 +21,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
 
 public class LaboratorRadiologie extends JPanel {
 	private JTextField text_Cauta;
@@ -73,21 +75,21 @@ public class LaboratorRadiologie extends JPanel {
 		
 		JLabel lblNewLabel_LabRadiologie = new JLabel("LABORATOR RADIOLOGIE");
 		lblNewLabel_LabRadiologie.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_LabRadiologie.setBounds(311, 22, 208, 20);
+		lblNewLabel_LabRadiologie.setBounds(314, 32, 208, 20);
 		add(lblNewLabel_LabRadiologie);
 		
 		JLabel lblNewLabel = new JLabel("DOCTOR");
 		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel.setBounds(10, 90, 69, 14);
+		lblNewLabel.setBounds(10, 134, 69, 14);
 		add(lblNewLabel);
 		
 	    comboBox_DoctorRadiologie = new JComboBox();
-		comboBox_DoctorRadiologie.setBounds(89, 88, 235, 20);
+		comboBox_DoctorRadiologie.setBounds(89, 132, 235, 20);
 		add(comboBox_DoctorRadiologie);
 		
 		JLabel lblNewLabel_1 = new JLabel("CAUTA CNP");
 		lblNewLabel_1.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_1.setBounds(10, 134, 79, 14);
+		lblNewLabel_1.setBounds(10, 183, 79, 14);
 		add(lblNewLabel_1);
 		
 		text_Cauta = new JTextField();
@@ -118,68 +120,63 @@ public class LaboratorRadiologie extends JPanel {
 		
 		text_Cauta.setBackground(SystemColor.info);
 		text_Cauta.setFont(new Font("Arial", Font.PLAIN, 12));
-		text_Cauta.setBounds(99, 131, 225, 20);
+		text_Cauta.setBounds(99, 180, 225, 20);
 		add(text_Cauta);
 		text_Cauta.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("NUME");
 		lblNewLabel_2.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_2.setBounds(10, 175, 52, 14);
+		lblNewLabel_2.setBounds(10, 217, 52, 14);
 		add(lblNewLabel_2);
 		
 		text_Nume = new JTextField();
 		text_Nume.setFont(new Font("Arial", Font.PLAIN, 12));
 		text_Nume.setBackground(SystemColor.info);
-		text_Nume.setBounds(59, 172, 265, 20);
+		text_Nume.setBounds(59, 214, 265, 20);
 		add(text_Nume);
 		text_Nume.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("PRENUME");
 		lblNewLabel_3.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_3.setBounds(10, 214, 79, 14);
+		lblNewLabel_3.setBounds(10, 257, 79, 14);
 		add(lblNewLabel_3);
 		
 		text_Prenume = new JTextField();
 		text_Prenume.setFont(new Font("Arial", Font.PLAIN, 12));
 		text_Prenume.setBackground(SystemColor.info);
-		text_Prenume.setBounds(89, 211, 235, 20);
+		text_Prenume.setBounds(89, 254, 235, 20);
 		add(text_Prenume);
 		text_Prenume.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("DATA/ORA");
 		lblNewLabel_4.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_4.setBounds(10, 257, 79, 14);
+		lblNewLabel_4.setBounds(10, 295, 79, 14);
 		add(lblNewLabel_4);
 		
 		text_Data = new JTextField();
 		text_Data.setFont(new Font("Arial", Font.PLAIN, 12));
 		text_Data.setBackground(SystemColor.info);
-		text_Data.setBounds(89, 255, 235, 20);
+		text_Data.setBounds(89, 292, 235, 20);
 		add(text_Data);
 		text_Data.setColumns(10);
 		
 		comboBox_Radiologie = new JComboBox();
-		comboBox_Radiologie.setBounds(116, 307, 208, 20);
+		comboBox_Radiologie.setBounds(606, 132, 208, 20);
 		add(comboBox_Radiologie);
 		
 		JLabel lblNewLabel_5 = new JLabel("INVESTIGATII");
 		lblNewLabel_5.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_5.setBounds(10, 309, 98, 14);
+		lblNewLabel_5.setBounds(498, 134, 98, 14);
 		add(lblNewLabel_5);
-		
-		JButton btnNewButton_CNAS = new JButton("RAPORTARE CNAS");
-		btnNewButton_CNAS.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton_CNAS.setBounds(547, 87, 187, 61);
-		add(btnNewButton_CNAS);
 		
 		JButton btnNewButton_RezImagine = new JButton("REZULTATE IMAGINE");
 		btnNewButton_RezImagine.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton_RezImagine.setBounds(547, 209, 187, 25);
+		btnNewButton_RezImagine.setBounds(627, 209, 187, 25);
 		add(btnNewButton_RezImagine);
 		
 		JButton btnNewButton_Tiparire = new JButton("TIPARESTE IMAGINE");
 		btnNewButton_Tiparire.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton_Tiparire.setBounds(547, 269, 187, 23);
+		btnNewButton_Tiparire.setBounds(627, 253, 187, 23);
 		add(btnNewButton_Tiparire);
 		
 		JButton btnNewButton_radiologie = new JButton("PROGRAMARI RADIOLOGIE");
@@ -242,6 +239,54 @@ public class LaboratorRadiologie extends JPanel {
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
+		
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 860, 21);
+		add(menuBar);
+		
+		JMenu mnFile = new JMenu("File");
+		mnFile.setFont(new Font("Arial", Font.BOLD, 12));
+		menuBar.add(mnFile);
+		
+		JMenu mnFile_1 = new JMenu("New");
+		mnFile_1.setFont(new Font("Arial", Font.PLAIN, 12));
+		mnFile.add(mnFile_1);
+		
+		JMenuItem mntmFile = new JMenuItem("File");
+		mntmFile.setFont(new Font("Arial", Font.PLAIN, 12));
+		mnFile_1.add(mntmFile);
+		
+		JMenuItem mntmFolder = new JMenuItem("Folder");
+		mntmFolder.setFont(new Font("Arial", Font.PLAIN, 12));
+		mnFile_1.add(mntmFolder);
+		
+		JMenu mnEdit = new JMenu("Edit");
+		mnEdit.setFont(new Font("Arial", Font.BOLD, 12));
+		menuBar.add(mnEdit);
+		
+		JMenu mnRapoarte = new JMenu("Rapoarte");
+		mnRapoarte.setFont(new Font("Arial", Font.BOLD, 12));
+		menuBar.add(mnRapoarte);
+		
+		JMenuItem mntmRapoarteDirector = new JMenuItem("Rapoarte Director");
+		mntmRapoarteDirector.setFont(new Font("Arial", Font.PLAIN, 12));
+		mnRapoarte.add(mntmRapoarteDirector);
+		
+		JMenuItem mntmFisaPacient = new JMenuItem("Fisa Pacient");
+		mntmFisaPacient.setFont(new Font("Arial", Font.PLAIN, 12));
+		mnRapoarte.add(mntmFisaPacient);
+		
+		JMenuItem mntmRaportareCnas = new JMenuItem("Raportare CNAS");
+		mntmRaportareCnas.setFont(new Font("Arial", Font.BOLD, 12));
+		mnRapoarte.add(mntmRaportareCnas);
+		
+		JMenu mnHelp = new JMenu("Help");
+		mnHelp.setFont(new Font("Arial", Font.BOLD, 12));
+		menuBar.add(mnHelp);
+		
+		JMenuItem mntmInformatiiRaportareCnas = new JMenuItem("Informatii Raportare CNAS");
+		mntmInformatiiRaportareCnas.setFont(new Font("Arial", Font.PLAIN, 12));
+		mnHelp.add(mntmInformatiiRaportareCnas);
 		fillComboBoxDoctor();
 		fillComboBoxRadiologie();
 
