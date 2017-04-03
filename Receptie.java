@@ -1,4 +1,5 @@
 
+
 import java.sql.*;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -358,7 +359,7 @@ public class Receptie extends JPanel {
 					pst3.execute();	
 					pst3.close();
 					
-					String query4="delete from ProgramariLaborator where CNP='"+textCNP.getText()+"'";
+					String query4="delete from ProgramariRadiologie where CNP='"+textCNP.getText()+"'";
 					PreparedStatement pst4 = connection.prepareStatement(query4);
 					
 					pst4.execute();	
@@ -433,7 +434,7 @@ public class Receptie extends JPanel {
 					pst2.setString(1, textCNP.getText());
 					pst2.execute();
 					
-					String query3 = "delete from ProgramariAnalize where CNP=?";
+					String query3 = "delete from ProgramariRadiologie where CNP=?";
 					PreparedStatement pst3 = connection.prepareStatement(query3);
 					pst3.setString(1, textCNP.getText());
 					pst3.execute();
