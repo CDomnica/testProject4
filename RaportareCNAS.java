@@ -45,6 +45,8 @@ public class RaportareCNAS
 	private JComboBox comboBox_Diagnostic;
 	private JComboBox comboBox_Diagnostic2;
 	private JComboBox comboBox_Parafa2;
+	private JComboBox comboBox_TipPacient;
+	private JComboBox comboBox_Investigatie;
 	
 	public void fillComboBoxParafa(){
 		try{
@@ -125,6 +127,39 @@ public class RaportareCNAS
 			ex.printStackTrace();
 		}
 	}
+	
+	public void fillComboBoxTipPacient(){
+		try{
+			
+			String query="select * from TipPacient ";
+			PreparedStatement pst = connection.prepareStatement(query);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()){
+				comboBox_TipPacient.addItem(rs.getString("TipPacient"));
+				
+			}
+		}catch(Exception ex) 
+		{
+			ex.printStackTrace();
+		}
+	}
+	
+	public void fillComboBoxTipInvestigatii(){
+		try{
+			
+			String query="select * from TipInvestigatii ";
+			PreparedStatement pst = connection.prepareStatement(query);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()){
+				comboBox_Investigatie.addItem(rs.getString("TipInvestigatii"));
+				
+			}
+		}catch(Exception ex) 
+		{
+			ex.printStackTrace();
+		}
+	}
+	
 	
 	public RaportareCNAS() {
 		connection=sqliteConnection.dbConnector();
@@ -250,7 +285,7 @@ public class RaportareCNAS
 		lblNewLabel_5.setBounds(451, 116, 91, 14);
 		panel_1.add(lblNewLabel_5);
 		
-		JComboBox comboBox_TipPacient = new JComboBox();
+		comboBox_TipPacient = new JComboBox();
 		comboBox_TipPacient.setBounds(573, 113, 243, 20);
 		panel_1.add(comboBox_TipPacient);
 		
@@ -395,7 +430,7 @@ public class RaportareCNAS
 		lblNewLabel_17.setBounds(10, 120, 80, 14);
 		panel_3.add(lblNewLabel_17);
 		
-		JComboBox comboBox_Investigatie = new JComboBox();
+		comboBox_Investigatie = new JComboBox();
 		comboBox_Investigatie.setBounds(105, 119, 708, 20);
 		panel_3.add(comboBox_Investigatie);
 		
@@ -463,6 +498,8 @@ public class RaportareCNAS
 		fillComboBoxDiagnostic();
 		fillComboBoxDiagnostic2();
 		fillComboBoxParafa2();
+		fillComboBoxTipPacient();
+		fillComboBoxTipInvestigatii();
 		
 	}
 	}
