@@ -28,6 +28,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JToolBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.border.TitledBorder;
 
 public class LaboratorAnalize extends JPanel {
 	private JTextField textField_nume;
@@ -96,80 +97,162 @@ public class LaboratorAnalize extends JPanel {
 		connection=sqliteConnection.dbConnector();
 		setLayout(null);
 		
-		JLabel lblNewLabel_Analize = new JLabel("LABORATOR ANALIZE");
-		lblNewLabel_Analize.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_Analize.setBounds(316, 32, 213, 17);
-		add(lblNewLabel_Analize);
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "LABORATOR ANALIZE", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBounds(4, 16, 826, 597);
+		add(panel);
+		panel.setLayout(null);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new TitledBorder(null, "Date Initiale", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_1.setBounds(11, 29, 412, 237);
+		panel.add(panel_1);
+		panel_1.setLayout(null);
 		
 		JLabel lblNewLabel_Doctor = new JLabel("DOCTOR");
+		lblNewLabel_Doctor.setBounds(6, 18, 78, 14);
+		panel_1.add(lblNewLabel_Doctor);
 		lblNewLabel_Doctor.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_Doctor.setBounds(21, 129, 78, 14);
-		add(lblNewLabel_Doctor);
 		
 		JLabel lblNewLabel_cnp = new JLabel("Cauta CNP");
+		lblNewLabel_cnp.setBounds(6, 62, 89, 14);
+		panel_1.add(lblNewLabel_cnp);
 		lblNewLabel_cnp.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_cnp.setBounds(10, 170, 89, 14);
-		add(lblNewLabel_cnp);
 		
 		JLabel lblNewLabel_Nume = new JLabel("NUME");
+		lblNewLabel_Nume.setBounds(6, 100, 46, 14);
+		panel_1.add(lblNewLabel_Nume);
 		lblNewLabel_Nume.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_Nume.setBounds(10, 210, 46, 14);
-		add(lblNewLabel_Nume);
 		
 		textField_nume = new JTextField();
+		textField_nume.setBounds(94, 98, 215, 20);
+		panel_1.add(textField_nume);
 		textField_nume.setBackground(SystemColor.info);
-		textField_nume.setBounds(76, 208, 233, 20);
-		add(textField_nume);
 		textField_nume.setColumns(10);
 		
 		JLabel lblNewLabel_Prenume = new JLabel("PRENUME");
+		lblNewLabel_Prenume.setBounds(6, 132, 70, 14);
+		panel_1.add(lblNewLabel_Prenume);
 		lblNewLabel_Prenume.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_Prenume.setBounds(10, 252, 70, 14);
-		add(lblNewLabel_Prenume);
 		
 		textField_prenume = new JTextField();
+		textField_prenume.setBounds(93, 130, 215, 20);
+		panel_1.add(textField_prenume);
 		textField_prenume.setBackground(SystemColor.info);
-		textField_prenume.setBounds(90, 250, 222, 20);
-		add(textField_prenume);
 		textField_prenume.setColumns(10);
 		
 		JLabel lblNewLabel_Data = new JLabel("DATA/ORA");
+		lblNewLabel_Data.setBounds(6, 165, 70, 14);
+		panel_1.add(lblNewLabel_Data);
 		lblNewLabel_Data.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_Data.setBounds(10, 288, 70, 14);
-		add(lblNewLabel_Data);
 		
 		textField_data = new JTextField();
+		textField_data.setBounds(94, 161, 215, 20);
+		panel_1.add(textField_data);
 		textField_data.setBackground(SystemColor.info);
-		textField_data.setBounds(90, 286, 222, 20);
-		add(textField_data);
 		textField_data.setColumns(10);
 		
+		comboBox_Doctor = new JComboBox();
+		comboBox_Doctor.setBounds(94, 16, 215, 20);
+		panel_1.add(comboBox_Doctor);
+		comboBox_Doctor.setBackground(SystemColor.info);
+		
+		text_CautaCNP = new JTextField();
+		text_CautaCNP.setBounds(94, 60, 213, 20);
+		panel_1.add(text_CautaCNP);
+		text_CautaCNP.setBackground(SystemColor.info);
+		text_CautaCNP.setColumns(10);
+		
+		JButton btnNewButton_Cautare = new JButton("Cautare");
+		btnNewButton_Cautare.setBounds(317, 58, 89, 23);
+		panel_1.add(btnNewButton_Cautare);
+		btnNewButton_Cautare.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{
+					String query = "select * from ProgramariAnalize where CNP=?";
+					PreparedStatement pst = connection.prepareStatement(query);
+					pst.setString(1, text_CautaCNP.getText());
+					ResultSet rs = pst.executeQuery();
+					
+					if(rs.next()){
+						String add1 = rs.getString("Nume");
+						textField_nume.setText(add1);
+						String add2 = rs.getString("Prenume");
+						textField_prenume.setText(add2);
+						String add3 = rs.getString("DataSiOra");
+						textField_data.setText(add3);
+						
+					} else{
+						JOptionPane.showMessageDialog(null, "Pacientul cu CNP-ul introdus nu exista sau nu are programare!");
+					}
+				}catch(Exception ex) 
+				{
+					ex.printStackTrace();
+				}
+			}
+		});
+		btnNewButton_Cautare.setFont(new Font("Arial", Font.BOLD, 12));
+		
+		JButton btnNewButton_1 = new JButton("CLEAR");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				text_CautaCNP.setText("");
+				textField_nume.setText("");
+				textField_prenume.setText("");
+				textField_data.setText("");
+					
+				
+			}
+		});
+		btnNewButton_1.setBounds(134, 207, 89, 23);
+		panel_1.add(btnNewButton_1);
+		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new TitledBorder(null, "Date Medicale", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBounds(466, 29, 334, 237);
+		panel.add(panel_2);
+		panel_2.setLayout(null);
+		
 		JLabel lblNewLabel_analiz = new JLabel("ANALIZE");
+		lblNewLabel_analiz.setBounds(6, 18, 70, 14);
+		panel_2.add(lblNewLabel_analiz);
 		lblNewLabel_analiz.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_analiz.setBounds(464, 210, 70, 14);
-		add(lblNewLabel_analiz);
 		
 		JLabel lblNewLabel_recoltare = new JLabel("RECOLTARE");
+		lblNewLabel_recoltare.setBounds(6, 57, 89, 14);
+		panel_2.add(lblNewLabel_recoltare);
 		lblNewLabel_recoltare.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel_recoltare.setBounds(445, 252, 89, 14);
-		add(lblNewLabel_recoltare);
-		
-		comboBox_Doctor = new JComboBox();
-		comboBox_Doctor.setBackground(SystemColor.info);
-		comboBox_Doctor.setBounds(89, 123, 228, 20);
-		add(comboBox_Doctor);
 		
 		comboBox_Recoltare = new JComboBox();
+		comboBox_Recoltare.setBounds(96, 55, 232, 20);
+		panel_2.add(comboBox_Recoltare);
 		comboBox_Recoltare.setBackground(SystemColor.info);
-		comboBox_Recoltare.setBounds(546, 250, 242, 20);
-		add(comboBox_Recoltare);
 		
 		comboBox_Analize = new JComboBox();
+		comboBox_Analize.setBounds(96, 16, 232, 20);
+		panel_2.add(comboBox_Analize);
 		comboBox_Analize.setBackground(SystemColor.info);
-		comboBox_Analize.setBounds(546, 208, 242, 20);
-		add(comboBox_Analize);
+		
+		JButton btnNewButton_RezAnalize = new JButton("REZULTATE ANALIZE");
+		btnNewButton_RezAnalize.setBounds(143, 101, 185, 23);
+		panel_2.add(btnNewButton_RezAnalize);
+		btnNewButton_RezAnalize.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		JButton btnNewButton_Tipareste = new JButton("TIPARESTE ");
+		btnNewButton_Tipareste.setBounds(143, 135, 185, 23);
+		panel_2.add(btnNewButton_Tipareste);
+		btnNewButton_Tipareste.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		JPanel panel_3 = new JPanel();
+		panel_3.setBorder(new TitledBorder(null, "Programari", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_3.setBounds(25, 350, 775, 236);
+		panel.add(panel_3);
+		panel_3.setLayout(null);
 		
 		JButton btnNewButton_RapProg = new JButton("Programari Analize");
+		btnNewButton_RapProg.setBounds(283, 16, 172, 23);
+		panel_3.add(btnNewButton_RapProg);
 		btnNewButton_RapProg.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -187,12 +270,10 @@ public class LaboratorAnalize extends JPanel {
 			}
 		});
 		btnNewButton_RapProg.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton_RapProg.setBounds(316, 393, 172, 23);
-		add(btnNewButton_RapProg);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(54, 438, 734, 135);
-		add(scrollPane);
+		scrollPane.setBounds(6, 61, 763, 135);
+		panel_3.add(scrollPane);
 		
 		table = new JTable();
 		table.addMouseListener(new MouseAdapter() {
@@ -228,6 +309,8 @@ public class LaboratorAnalize extends JPanel {
 		scrollPane.setColumnHeaderView(menuBar);
 		
 		JButton btnNewButton_inapoi = new JButton("INAPOI");
+		btnNewButton_inapoi.setBounds(21, 207, 89, 23);
+		panel_3.add(btnNewButton_inapoi);
 		btnNewButton_inapoi.setFont(new Font("Arial", Font.BOLD, 14));
 		btnNewButton_inapoi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -237,26 +320,10 @@ public class LaboratorAnalize extends JPanel {
 				Login.frame.validate();
 			}
 		});
-		btnNewButton_inapoi.setBounds(54, 584, 89, 23);
-		add(btnNewButton_inapoi);
-		
-		text_CautaCNP = new JTextField();
-		text_CautaCNP.setBackground(SystemColor.info);
-		text_CautaCNP.setBounds(100, 168, 213, 20);
-		add(text_CautaCNP);
-		text_CautaCNP.setColumns(10);
-		
-		JButton btnNewButton_RezAnalize = new JButton("REZULTATE ANALIZE");
-		btnNewButton_RezAnalize.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton_RezAnalize.setBounds(603, 306, 185, 23);
-		add(btnNewButton_RezAnalize);
-		
-		JButton btnNewButton_Tipareste = new JButton("TIPARESTE ");
-		btnNewButton_Tipareste.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton_Tipareste.setBounds(603, 340, 185, 23);
-		add(btnNewButton_Tipareste);
 		
 		JButton btnNewButton_Raportare = new JButton("RAPORTARE CNAS");
+		btnNewButton_Raportare.setBounds(615, 288, 185, 59);
+		panel.add(btnNewButton_Raportare);
 		btnNewButton_Raportare.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				RaportareCNAS s = new RaportareCNAS();
@@ -264,8 +331,6 @@ public class LaboratorAnalize extends JPanel {
 			}
 		});
 		btnNewButton_Raportare.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton_Raportare.setBounds(582, 107, 185, 59);
-		add(btnNewButton_Raportare);
 		
 		JButton btnNewButton = new JButton("CLEAR");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -358,36 +423,6 @@ public class LaboratorAnalize extends JPanel {
 		JMenuItem mntmInformatiiRaportareCnas = new JMenuItem("Informatii raportare CNAS");
 		mntmInformatiiRaportareCnas.setFont(new Font("Arial", Font.PLAIN, 12));
 		mnHelp.add(mntmInformatiiRaportareCnas);
-		
-		JButton btnNewButton_Cautare = new JButton("Cautare");
-		btnNewButton_Cautare.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				try{
-					String query = "select * from ProgramariAnalize where CNP=?";
-					PreparedStatement pst = connection.prepareStatement(query);
-					pst.setString(1, text_CautaCNP.getText());
-					ResultSet rs = pst.executeQuery();
-					
-					if(rs.next()){
-						String add1 = rs.getString("Nume");
-						textField_nume.setText(add1);
-						String add2 = rs.getString("Prenume");
-						textField_prenume.setText(add2);
-						String add3 = rs.getString("DataSiOra");
-						textField_data.setText(add3);
-						
-					} else{
-						JOptionPane.showMessageDialog(null, "Pacientul cu CNP-ul introdus nu exista sau nu are programare!");
-					}
-				}catch(Exception ex) 
-				{
-					ex.printStackTrace();
-				}
-			}
-		});
-		btnNewButton_Cautare.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton_Cautare.setBounds(323, 167, 89, 23);
-		add(btnNewButton_Cautare);
 		
 		fillComboBoxDoctor();
 		//fillComboBoxCNP();
