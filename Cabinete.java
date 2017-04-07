@@ -20,6 +20,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
+import javax.swing.border.TitledBorder;
 
 public class Cabinete extends JPanel {
 	private JTextField textCautaCNP;
@@ -222,19 +223,84 @@ public class Cabinete extends JPanel {
 		tabbedPane.addTab("Medicina Generala", null, panel, null);
 		panel.setLayout(null);
 		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBorder(new TitledBorder(null, "Date Initiale", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_2.setBounds(10, 19, 407, 249);
+		panel.add(panel_2);
+		panel_2.setLayout(null);
+		
 		JLabel lblCnpCautare = new JLabel("Cauta CNP");
+		lblCnpCautare.setBounds(6, 67, 80, 14);
+		panel_2.add(lblCnpCautare);
 		lblCnpCautare.setFont(new Font("Arial", Font.BOLD, 14));
-		lblCnpCautare.setBounds(10, 134, 80, 14);
-		panel.add(lblCnpCautare);
 		
 		textCautaCNP = new JTextField();
+		textCautaCNP.setBounds(87, 65, 215, 20);
+		panel_2.add(textCautaCNP);
 		textCautaCNP.setBackground(SystemColor.info);
-		textCautaCNP.setBounds(91, 132, 215, 20);
-		panel.add(textCautaCNP);
 		textCautaCNP.setColumns(10);
 		
 		JButton btnCautare = new JButton("Cautare");
+		btnCautare.setBounds(312, 63, 89, 23);
+		panel_2.add(btnCautare);
 		btnCautare.setFont(new Font("Arial", Font.BOLD, 12));
+		
+		JLabel lblNume = new JLabel("NUME");
+		lblNume.setBounds(6, 103, 55, 14);
+		panel_2.add(lblNume);
+		lblNume.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		textNume = new JTextField();
+		textNume.setBounds(87, 96, 215, 20);
+		panel_2.add(textNume);
+		textNume.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textNume.setColumns(10);
+		textNume.setBackground(SystemColor.info);
+		
+		JLabel lblPrenume = new JLabel("PRENUME");
+		lblPrenume.setBounds(6, 135, 80, 14);
+		panel_2.add(lblPrenume);
+		lblPrenume.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		textPrenume = new JTextField();
+		textPrenume.setBounds(87, 132, 215, 20);
+		panel_2.add(textPrenume);
+		textPrenume.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textPrenume.setColumns(10);
+		textPrenume.setBackground(SystemColor.info);
+		
+		JLabel lblDoctor = new JLabel("DOCTOR");
+		lblDoctor.setBounds(6, 16, 68, 20);
+		panel_2.add(lblDoctor);
+		lblDoctor.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		JLabel lblDataora = new JLabel("DATA/ORA");
+		lblDataora.setBounds(6, 160, 70, 23);
+		panel_2.add(lblDataora);
+		lblDataora.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		textData = new JTextField();
+		textData.setBounds(87, 163, 215, 21);
+		panel_2.add(textData);
+		textData.setBackground(SystemColor.info);
+		textData.setColumns(10);
+		
+		JButton btnClear = new JButton("CLEAR");
+		btnClear.setBounds(115, 219, 114, 23);
+		panel_2.add(btnClear);
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textCautaCNP.setText("");
+				textNume.setText("");
+				textPrenume.setText("");
+				textData.setText("");
+			}
+		});
+		btnClear.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		comboBox_Doctor = new JComboBox();
+		comboBox_Doctor.setBounds(84, 17, 215, 20);
+		panel_2.add(comboBox_Doctor);
 		btnCautare.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try{
@@ -261,45 +327,63 @@ public class Cabinete extends JPanel {
 				}
 			}
 		});
-		btnCautare.setBounds(318, 130, 89, 23);
-		panel.add(btnCautare);
 		
-		JLabel lblNume = new JLabel("NUME");
-		lblNume.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNume.setBounds(10, 188, 55, 14);
-		panel.add(lblNume);
-		
-		textNume = new JTextField();
-		textNume.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textNume.setColumns(10);
-		textNume.setBackground(SystemColor.info);
-		textNume.setBounds(60, 182, 246, 20);
-		panel.add(textNume);
-		
-		JLabel lblPrenume = new JLabel("PRENUME");
-		lblPrenume.setFont(new Font("Arial", Font.BOLD, 14));
-		lblPrenume.setBounds(10, 228, 80, 14);
-		panel.add(lblPrenume);
-		
-		textPrenume = new JTextField();
-		textPrenume.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textPrenume.setColumns(10);
-		textPrenume.setBackground(SystemColor.info);
-		textPrenume.setBounds(91, 225, 215, 20);
-		panel.add(textPrenume);
+		JPanel panel_3 = new JPanel();
+		panel_3.setBorder(new TitledBorder(null, "Reteta", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_3.setBounds(494, 13, 317, 128);
+		panel.add(panel_3);
+		panel_3.setLayout(null);
 		
 		JLabel lblDiagnostic = new JLabel("Diagnostic");
+		lblDiagnostic.setBounds(6, 16, 81, 20);
+		panel_3.add(lblDiagnostic);
 		lblDiagnostic.setFont(new Font("Arial", Font.BOLD, 14));
-		lblDiagnostic.setBounds(516, 131, 81, 20);
-		panel.add(lblDiagnostic);
 		
 		JLabel lblTratament = new JLabel("Tratament");
+		lblTratament.setBounds(6, 47, 80, 23);
+		panel_3.add(lblTratament);
 		lblTratament.setFont(new Font("Arial", Font.BOLD, 14));
-		lblTratament.setBounds(516, 162, 80, 23);
-		panel.add(lblTratament);
+		
+		comboBox_Diagnostic = new JComboBox();
+		comboBox_Diagnostic.setBounds(97, 17, 214, 20);
+		panel_3.add(comboBox_Diagnostic);
+		
+		comboBox_Tratament = new JComboBox();
+		comboBox_Tratament.setBounds(96, 55, 215, 20);
+		panel_3.add(comboBox_Tratament);
+		
+		JButton btnNewButton_5 = new JButton("Genereaza Reteta");
+		btnNewButton_5.setBounds(163, 98, 146, 23);
+		panel_3.add(btnNewButton_5);
+		btnNewButton_5.setFont(new Font("Arial", Font.BOLD, 12));
+		
+		JPanel panel_5 = new JPanel();
+		panel_5.setBorder(new TitledBorder(null, "Programari", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_5.setBounds(15, 350, 802, 229);
+		panel.add(panel_5);
+		panel_5.setLayout(null);
 		
 		JButton btnInapoi = new JButton("INAPOI");
+		btnInapoi.setBounds(26, 189, 114, 23);
+		panel_5.add(btnInapoi);
 		btnInapoi.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		JButton btnSalveaza = new JButton("SALVEAZA");
+		btnSalveaza.setBounds(676, 199, 114, 23);
+		panel_5.add(btnSalveaza);
+		btnSalveaza.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		JButton btnNewButton_7 = new JButton("Programari Medicina Generala");
+		btnNewButton_7.setBounds(263, 16, 208, 23);
+		panel_5.add(btnNewButton_7);
+		btnNewButton_7.setFont(new Font("Arial", Font.BOLD, 12));
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(6, 59, 790, 119);
+		panel_5.add(scrollPane_1);
+		
+		table_1 = new JTable();
+		scrollPane_1.setViewportView(table_1);
 		btnInapoi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PanelOptions options = new PanelOptions();
@@ -308,51 +392,40 @@ public class Cabinete extends JPanel {
 				Login.frame.validate();
 			}
 		});
-		btnInapoi.setBounds(41, 539, 114, 23);
-		panel.add(btnInapoi);
 		
-		JLabel lblDoctor = new JLabel("DOCTOR");
-		lblDoctor.setFont(new Font("Arial", Font.BOLD, 14));
-		lblDoctor.setBounds(10, 63, 68, 20);
-		panel.add(lblDoctor);
-		
-		JLabel lblDataora = new JLabel("DATA/ORA");
-		lblDataora.setFont(new Font("Arial", Font.BOLD, 14));
-		lblDataora.setBounds(10, 265, 70, 23);
-		panel.add(lblDataora);
-		
-		textData = new JTextField();
-		textData.setBackground(SystemColor.info);
-		textData.setBounds(91, 267, 215, 21);
-		panel.add(textData);
-		textData.setColumns(10);
-		
-		JButton btnClear = new JButton("CLEAR");
-		btnClear.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				textCautaCNP.setText("");
-				textNume.setText("");
-				textPrenume.setText("");
-				textData.setText("");
-			}
-		});
-		btnClear.setFont(new Font("Arial", Font.BOLD, 14));
-		btnClear.setBounds(696, 539, 114, 23);
-		panel.add(btnClear);
+		JPanel panel_4 = new JPanel();
+		panel_4.setBorder(new TitledBorder(null, "Trimitere", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_4.setBounds(494, 160, 317, 108);
+		panel.add(panel_4);
+		panel_4.setLayout(null);
 		
 		JLabel lblAnalize = new JLabel("Analize");
+		lblAnalize.setBounds(6, 18, 68, 14);
+		panel_4.add(lblAnalize);
 		lblAnalize.setFont(new Font("Arial", Font.BOLD, 14));
-		lblAnalize.setBounds(541, 254, 68, 14);
-		panel.add(lblAnalize);
 		
-		JButton btnSalveaza = new JButton("SALVEAZA");
-		btnSalveaza.setFont(new Font("Arial", Font.BOLD, 14));
-		btnSalveaza.setBounds(358, 539, 114, 23);
-		panel.add(btnSalveaza);
+		comboBox_Analize = new JComboBox();
+		comboBox_Analize.setBounds(99, 16, 212, 20);
+		panel_4.add(comboBox_Analize);
 		
-		comboBox_Doctor = new JComboBox();
-		comboBox_Doctor.setBounds(80, 64, 226, 20);
-		panel.add(comboBox_Doctor);
+		JLabel lblNewLabel = new JLabel("Radiologie");
+		lblNewLabel.setBounds(6, 49, 89, 14);
+		panel_4.add(lblNewLabel);
+		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		comboBox_Radiologie = new JComboBox();
+		comboBox_Radiologie.setBounds(97, 47, 213, 20);
+		panel_4.add(comboBox_Radiologie);
+		
+		JButton btnNewButton_6 = new JButton("Genereaza Trimitere");
+		btnNewButton_6.setBounds(158, 78, 153, 23);
+		panel_4.add(btnNewButton_6);
+		btnNewButton_6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BiletTrimitere bt = new BiletTrimitere();
+			}
+		});
+		btnNewButton_6.setFont(new Font("Arial", Font.BOLD, 12));
 		
 		JButton btnNewButton_4 = new JButton("RAPORTARE CNAS");
 		btnNewButton_4.addActionListener(new ActionListener() {
@@ -361,71 +434,92 @@ public class Cabinete extends JPanel {
 			}
 		});
 		btnNewButton_4.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton_4.setBounds(625, 28, 185, 59);
+		btnNewButton_4.setBounds(620, 285, 185, 59);
 		panel.add(btnNewButton_4);
-		
-		comboBox_Diagnostic = new JComboBox();
-		comboBox_Diagnostic.setBounds(602, 133, 208, 20);
-		panel.add(comboBox_Diagnostic);
-		
-		comboBox_Tratament = new JComboBox();
-		comboBox_Tratament.setBounds(597, 164, 213, 20);
-		panel.add(comboBox_Tratament);
-		
-		JButton btnNewButton_5 = new JButton("Genereaza Reteta");
-		btnNewButton_5.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton_5.setBounds(659, 206, 146, 23);
-		panel.add(btnNewButton_5);
-		
-		comboBox_Analize = new JComboBox();
-		comboBox_Analize.setBounds(602, 252, 212, 20);
-		panel.add(comboBox_Analize);
-		
-		JLabel lblNewLabel = new JLabel("Radiologie");
-		lblNewLabel.setFont(new Font("Arial", Font.BOLD, 14));
-		lblNewLabel.setBounds(516, 289, 89, 14);
-		panel.add(lblNewLabel);
-		
-		comboBox_Radiologie = new JComboBox();
-		comboBox_Radiologie.setBounds(602, 287, 208, 20);
-		panel.add(comboBox_Radiologie);
-		
-		JButton btnNewButton_6 = new JButton("Genereaza Trimitere");
-		btnNewButton_6.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton_6.setBounds(657, 332, 153, 23);
-		panel.add(btnNewButton_6);
-		
-		JButton btnNewButton_7 = new JButton("Programari Medicina Generala");
-		btnNewButton_7.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton_7.setBounds(278, 366, 208, 23);
-		panel.add(btnNewButton_7);
-		
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(21, 409, 790, 119);
-		panel.add(scrollPane_1);
-		
-		table_1 = new JTable();
-		scrollPane_1.setViewportView(table_1);
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Pediatrie", null, panel_1, null);
 		panel_1.setLayout(null);
 		
+		JPanel panel_6 = new JPanel();
+		panel_6.setBorder(new TitledBorder(null, "Date Initiale", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_6.setBounds(11, 19, 409, 241);
+		panel_1.add(panel_6);
+		panel_6.setLayout(null);
+		
 		
 		JLabel lblCnpCautare2 = new JLabel("Cauta CNP");
-		lblCnpCautare2.setBounds(0, 138, 85, 14);
+		lblCnpCautare2.setBounds(6, 70, 85, 14);
+		panel_6.add(lblCnpCautare2);
 		lblCnpCautare2.setFont(new Font("Arial", Font.BOLD, 14));
-		panel_1.add(lblCnpCautare2);
 		
 		textCautaCNP2 = new JTextField();
+		textCautaCNP2.setBounds(89, 68, 215, 20);
+		panel_6.add(textCautaCNP2);
 		textCautaCNP2.setBackground(SystemColor.info);
-		textCautaCNP2.setBounds(77, 136, 215, 20);
 		textCautaCNP2.setColumns(10);
-		panel_1.add(textCautaCNP2);
 		
 		JButton btnCautare2 = new JButton("Cautare");
+		btnCautare2.setBounds(314, 66, 89, 23);
+		panel_6.add(btnCautare2);
 		btnCautare2.setFont(new Font("Arial", Font.BOLD, 12));
-		btnCautare2.setBounds(302, 134, 89, 23);
+		
+		JLabel lblNume2 = new JLabel("NUME");
+		lblNume2.setBounds(6, 105, 55, 14);
+		panel_6.add(lblNume2);
+		lblNume2.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		textNume2 = new JTextField();
+		textNume2.setBounds(89, 99, 215, 20);
+		panel_6.add(textNume2);
+		textNume2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textNume2.setColumns(10);
+		textNume2.setBackground(SystemColor.info);
+		
+		JLabel lblPrenume2 = new JLabel("PRENUME");
+		lblPrenume2.setBounds(6, 130, 80, 14);
+		panel_6.add(lblPrenume2);
+		lblPrenume2.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		textPrenume2 = new JTextField();
+		textPrenume2.setBounds(89, 130, 215, 20);
+		panel_6.add(textPrenume2);
+		textPrenume2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		textPrenume2.setColumns(10);
+		textPrenume2.setBackground(SystemColor.info);
+		
+		JLabel lblDoctor2 = new JLabel("DOCTOR");
+		lblDoctor2.setBounds(6, 16, 68, 20);
+		panel_6.add(lblDoctor2);
+		lblDoctor2.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		JLabel lblDataora2 = new JLabel("DATA/ORA");
+		lblDataora2.setBounds(6, 159, 70, 23);
+		panel_6.add(lblDataora2);
+		lblDataora2.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		textData2 = new JTextField();
+		textData2.setBounds(89, 161, 215, 21);
+		panel_6.add(textData2);
+		textData2.setColumns(10);
+		textData2.setBackground(SystemColor.info);
+		
+		JButton btnClear2 = new JButton("CLEAR");
+		btnClear2.setBounds(126, 211, 114, 23);
+		panel_6.add(btnClear2);
+		btnClear2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				textCautaCNP2.setText("");
+				textNume2.setText("");
+				textPrenume2.setText("");
+				textData2.setText("");
+			}
+		});
+		btnClear2.setFont(new Font("Arial", Font.BOLD, 14));
+		
+		comboBox_DoctorP = new JComboBox();
+		comboBox_DoctorP.setBounds(85, 17, 219, 20);
+		panel_6.add(comboBox_DoctorP);
 		btnCautare2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -452,45 +546,63 @@ public class Cabinete extends JPanel {
 				}
 			}
 		});
-		panel_1.add(btnCautare2);
 		
-		JLabel lblNume2 = new JLabel("NUME");
-		lblNume2.setBounds(5, 189, 55, 14);
-		lblNume2.setFont(new Font("Arial", Font.BOLD, 14));
-		panel_1.add(lblNume2);
-		
-		textNume2 = new JTextField();
-		textNume2.setBounds(59, 186, 239, 20);
-		textNume2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textNume2.setColumns(10);
-		textNume2.setBackground(SystemColor.info);
-		panel_1.add(textNume2);
-		
-		JLabel lblPrenume2 = new JLabel("PRENUME");
-		lblPrenume2.setBounds(5, 231, 80, 14);
-		lblPrenume2.setFont(new Font("Arial", Font.BOLD, 14));
-		panel_1.add(lblPrenume2);
-		
-		textPrenume2 = new JTextField();
-		textPrenume2.setBounds(81, 228, 215, 20);
-		textPrenume2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textPrenume2.setColumns(10);
-		textPrenume2.setBackground(SystemColor.info);
-		panel_1.add(textPrenume2);
+		JPanel panel_7 = new JPanel();
+		panel_7.setBorder(new TitledBorder(null, "Reteta", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_7.setBounds(485, 11, 329, 120);
+		panel_1.add(panel_7);
+		panel_7.setLayout(null);
 		
 		JLabel lblDiagnotic2 = new JLabel("Diagnostic");
-		lblDiagnotic2.setBounds(517, 135, 81, 20);
+		lblDiagnotic2.setBounds(6, 16, 81, 20);
+		panel_7.add(lblDiagnotic2);
 		lblDiagnotic2.setFont(new Font("Arial", Font.BOLD, 14));
-		panel_1.add(lblDiagnotic2);
 		
 		JLabel lblTratament2 = new JLabel("Tratament");
-		lblTratament2.setBounds(517, 166, 80, 23);
+		lblTratament2.setBounds(6, 47, 80, 23);
+		panel_7.add(lblTratament2);
 		lblTratament2.setFont(new Font("Arial", Font.BOLD, 14));
-		panel_1.add(lblTratament2);
+		
+		comboBox_DiagnosticP = new JComboBox();
+		comboBox_DiagnosticP.setBounds(106, 17, 217, 20);
+		panel_7.add(comboBox_DiagnosticP);
+		
+		comboBox_TratamentP = new JComboBox();
+		comboBox_TratamentP.setBounds(106, 49, 217, 20);
+		panel_7.add(comboBox_TratamentP);
+		
+		JButton btnNewButton_2 = new JButton("Genereaza Reteta");
+		btnNewButton_2.setBounds(178, 90, 145, 23);
+		panel_7.add(btnNewButton_2);
+		btnNewButton_2.setFont(new Font("Arial", Font.BOLD, 12));
+		
+		JPanel panel_9 = new JPanel();
+		panel_9.setBorder(new TitledBorder(null, "Programari", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_9.setBounds(15, 359, 800, 219);
+		panel_1.add(panel_9);
+		panel_9.setLayout(null);
 		
 		JButton btnInapoi2 = new JButton("INAPOI");
+		btnInapoi2.setBounds(31, 189, 114, 23);
+		panel_9.add(btnInapoi2);
 		btnInapoi2.setFont(new Font("Arial", Font.BOLD, 14));
-		btnInapoi2.setBounds(46, 548, 114, 23);
+		
+		JButton btnNewButton = new JButton("Programari Pediatrie");
+		btnNewButton.setBounds(307, 16, 155, 23);
+		panel_9.add(btnNewButton);
+		btnNewButton.setFont(new Font("Arial", Font.BOLD, 12));
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(6, 50, 787, 128);
+		panel_9.add(scrollPane);
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		
+		JButton btnNewButton_8 = new JButton("SALVEAZA");
+		btnNewButton_8.setBounds(680, 189, 114, 23);
+		panel_9.add(btnNewButton_8);
+		btnNewButton_8.setFont(new Font("Arial", Font.BOLD, 14));
 		btnInapoi2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PanelOptions options2 = new PanelOptions();
@@ -499,57 +611,40 @@ public class Cabinete extends JPanel {
 				Login.frame.validate();
 			}
 		});
-		panel_1.add(btnInapoi2);
 		
-		JLabel lblDoctor2 = new JLabel("DOCTOR");
-		lblDoctor2.setBounds(7, 74, 68, 20);
-		lblDoctor2.setFont(new Font("Arial", Font.BOLD, 14));
-		panel_1.add(lblDoctor2);
-		
-		JLabel lblDataora2 = new JLabel("DATA/ORA");
-		lblDataora2.setBounds(5, 268, 70, 23);
-		lblDataora2.setFont(new Font("Arial", Font.BOLD, 14));
-		panel_1.add(lblDataora2);
-		
-		textData2 = new JTextField();
-		textData2.setBounds(89, 270, 209, 21);
-		textData2.setColumns(10);
-		textData2.setBackground(SystemColor.info);
-		panel_1.add(textData2);
-		
-		JButton btnClear2 = new JButton("CLEAR");
-		btnClear2.setBounds(688, 547, 114, 23);
-		btnClear2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				textCautaCNP2.setText("");
-				textNume2.setText("");
-				textPrenume2.setText("");
-				textData2.setText("");
-			}
-		});
-		btnClear2.setFont(new Font("Arial", Font.BOLD, 14));
-		panel_1.add(btnClear2);
+		JPanel panel_8 = new JPanel();
+		panel_8.setBorder(new TitledBorder(null, "Trimitere", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_8.setBounds(485, 140, 329, 127);
+		panel_1.add(panel_8);
+		panel_8.setLayout(null);
 		
 		JLabel lblLaborator = new JLabel("Analize");
-		lblLaborator.setBounds(530, 258, 68, 14);
+		lblLaborator.setBounds(6, 18, 68, 14);
+		panel_8.add(lblLaborator);
 		lblLaborator.setFont(new Font("Arial", Font.BOLD, 14));
-		panel_1.add(lblLaborator);
 		
-		comboBox_DoctorP = new JComboBox();
-		comboBox_DoctorP.setBounds(77, 75, 215, 20);
-		panel_1.add(comboBox_DoctorP);
+		comboBox_AnalizeP = new JComboBox();
+		comboBox_AnalizeP.setBounds(106, 16, 217, 20);
+		panel_8.add(comboBox_AnalizeP);
 		
-		JButton btnNewButton = new JButton("Programari Pediatrie");
-		btnNewButton.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton.setBounds(322, 375, 155, 23);
-		panel_1.add(btnNewButton);
+		JLabel lblRadiologie = new JLabel("Radiologie");
+		lblRadiologie.setBounds(6, 57, 80, 14);
+		panel_8.add(lblRadiologie);
+		lblRadiologie.setFont(new Font("Arial", Font.BOLD, 14));
 		
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(21, 409, 787, 128);
-		panel_1.add(scrollPane);
+		comboBox_RadiologieP = new JComboBox();
+		comboBox_RadiologieP.setBounds(106, 55, 217, 20);
+		panel_8.add(comboBox_RadiologieP);
 		
-		table = new JTable();
-		scrollPane.setViewportView(table);
+		JButton btnNewButton_3 = new JButton("Genereaza Trimitere");
+		btnNewButton_3.setBounds(168, 97, 155, 23);
+		panel_8.add(btnNewButton_3);
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				BiletTrimitere bt  = new BiletTrimitere();
+			}
+		});
+		btnNewButton_3.setFont(new Font("Arial", Font.BOLD, 12));
 		
 		JButton btnNewButton_1 = new JButton("RAPORTARE CNAS");
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -558,44 +653,8 @@ public class Cabinete extends JPanel {
 			}
 		});
 		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton_1.setBounds(628, 35, 185, 59);
+		btnNewButton_1.setBounds(624, 286, 185, 59);
 		panel_1.add(btnNewButton_1);
-		
-		comboBox_DiagnosticP = new JComboBox();
-		comboBox_DiagnosticP.setBounds(608, 136, 202, 20);
-		panel_1.add(comboBox_DiagnosticP);
-		
-		comboBox_TratamentP = new JComboBox();
-		comboBox_TratamentP.setBounds(607, 168, 202, 20);
-		panel_1.add(comboBox_TratamentP);
-		
-		comboBox_AnalizeP = new JComboBox();
-		comboBox_AnalizeP.setBounds(608, 256, 201, 20);
-		panel_1.add(comboBox_AnalizeP);
-		
-		JLabel lblRadiologie = new JLabel("Radiologie");
-		lblRadiologie.setFont(new Font("Arial", Font.BOLD, 14));
-		lblRadiologie.setBounds(518, 289, 80, 14);
-		panel_1.add(lblRadiologie);
-		
-		comboBox_RadiologieP = new JComboBox();
-		comboBox_RadiologieP.setBounds(608, 287, 201, 20);
-		panel_1.add(comboBox_RadiologieP);
-		
-		JButton btnNewButton_2 = new JButton("Genereaza Reteta");
-		btnNewButton_2.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton_2.setBounds(664, 208, 145, 23);
-		panel_1.add(btnNewButton_2);
-		
-		JButton btnNewButton_3 = new JButton("Genereaza Trimitere");
-		btnNewButton_3.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton_3.setBounds(649, 326, 155, 23);
-		panel_1.add(btnNewButton_3);
-		
-		JButton btnNewButton_8 = new JButton("SALVEAZA");
-		btnNewButton_8.setFont(new Font("Arial", Font.BOLD, 14));
-		btnNewButton_8.setBounds(359, 549, 114, 23);
-		panel_1.add(btnNewButton_8);
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBounds(0, 0, 876, 21);
@@ -673,5 +732,5 @@ public class Cabinete extends JPanel {
 		fillComboBoxAnalizeP();
 		fillComboBoxRadiologieMG();
 		fillComboBoxRadiologieP();
-	} 
+	}
 }
