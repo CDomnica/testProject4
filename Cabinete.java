@@ -353,6 +353,11 @@ public class Cabinete extends JPanel {
 		panel_3.add(comboBox_Tratament);
 		
 		JButton btnNewButton_5 = new JButton("Genereaza Reteta");
+		btnNewButton_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Reteta r = new Reteta();
+			}
+		});
 		btnNewButton_5.setBounds(163, 98, 146, 23);
 		panel_3.add(btnNewButton_5);
 		btnNewButton_5.setFont(new Font("Arial", Font.BOLD, 12));
@@ -572,6 +577,11 @@ public class Cabinete extends JPanel {
 		panel_7.add(comboBox_TratamentP);
 		
 		JButton btnNewButton_2 = new JButton("Genereaza Reteta");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Reteta r = new Reteta();
+			}
+		});
 		btnNewButton_2.setBounds(178, 90, 145, 23);
 		panel_7.add(btnNewButton_2);
 		btnNewButton_2.setFont(new Font("Arial", Font.BOLD, 12));
