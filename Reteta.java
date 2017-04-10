@@ -4,6 +4,9 @@ import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -12,19 +15,93 @@ import javax.swing.JButton;
 import javax.swing.JScrollPane;
 
 public class Reteta {
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
+	
+	Connection connection = null;
+	
+	private JTextField textField_NrContract;
+	private JTextField textField_CNP;
+	private JTextField textField_Nume;
+	private JTextField textField_Prenume;
+	private JTextField txtCasaDeAsigurari;
+	private JTextField textField_RC;
+	private JTextField textField_SerieReteta;
+	private JTextField textField_NumarReteta;
+	private JTextField textField_DataReteta;
 	private JTable table;
+	private JComboBox comboBox_TipAsigurat;
+	private JComboBox comboBox_Parafa;
+	private JComboBox comboBox_Diagnostic;
+	private JComboBox comboBox_Medicament;
+	
+	public void fillComboBoxParafa(){
+		try{
+			
+			String query="select * from Doctori ";
+			PreparedStatement pst = connection.prepareStatement(query);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()){
+				comboBox_Parafa.addItem(rs.getString("NumeSiPrenume"));
+				
+			}
+		}catch(Exception ex) 
+		{
+			ex.printStackTrace();
+		}
+	}
+	
+	
+	public void fillComboBoxTipAsigurat(){
+		try{
+			
+			String query="select * from Asigurati ";
+			PreparedStatement pst = connection.prepareStatement(query);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()){
+				comboBox_TipAsigurat.addItem(rs.getString("TipAsigurat"));
+				
+			}
+		}catch(Exception ex) 
+		{
+			ex.printStackTrace();
+		}
+	}
+	
+	public void fillComboBoxDiagnostic(){
+		try{
+			
+			String query="select * from Servicii ";
+			PreparedStatement pst = connection.prepareStatement(query);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()){
+				comboBox_Diagnostic.addItem(rs.getString("DiagnosticInitial"));
+				
+			}
+		}catch(Exception ex) 
+		{
+			ex.printStackTrace();
+		}
+	}
+	
+	public void fillComboBoxMedicament(){
+		try{
+			
+			String query="select * from Tratament ";
+			PreparedStatement pst = connection.prepareStatement(query);
+			ResultSet rs = pst.executeQuery();
+			while (rs.next()){
+				comboBox_Medicament.addItem(rs.getString("Tratamente"));
+				
+			}
+		}catch(Exception ex) 
+		{
+			ex.printStackTrace();
+		}
+	}
+	
 	
 	public Reteta() {
+		
+		connection=sqliteConnection.dbConnector();
 	
 		JFrame frame = new JFrame();
 		
@@ -51,12 +128,12 @@ public class Reteta {
 		lblNumarContract.setBounds(426, 27, 104, 14);
 		panel_1.add(lblNumarContract);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(551, 25, 263, 20);
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
+		textField_NrContract = new JTextField();
+		textField_NrContract.setBounds(551, 25, 263, 20);
+		panel_1.add(textField_NrContract);
+		textField_NrContract.setColumns(10);
 		
-		JComboBox comboBox_Parafa = new JComboBox();
+		comboBox_Parafa = new JComboBox();
 		comboBox_Parafa.setBounds(107, 25, 263, 20);
 		panel_1.add(comboBox_Parafa);
 		
@@ -84,20 +161,20 @@ public class Reteta {
 		lblNewLabel_2.setBounds(10, 72, 59, 14);
 		panel_2.add(lblNewLabel_2);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(105, 16, 263, 20);
-		panel_2.add(textField_2);
-		textField_2.setColumns(10);
+		textField_CNP = new JTextField();
+		textField_CNP.setBounds(105, 16, 263, 20);
+		panel_2.add(textField_CNP);
+		textField_CNP.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(105, 45, 263, 20);
-		panel_2.add(textField_3);
-		textField_3.setColumns(10);
+		textField_Nume = new JTextField();
+		textField_Nume.setBounds(105, 45, 263, 20);
+		panel_2.add(textField_Nume);
+		textField_Nume.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(105, 72, 263, 20);
-		panel_2.add(textField_4);
-		textField_4.setColumns(10);
+		textField_Prenume = new JTextField();
+		textField_Prenume.setBounds(105, 72, 263, 20);
+		panel_2.add(textField_Prenume);
+		textField_Prenume.setColumns(10);
 		
 		JLabel lblCasaDeAsigurari = new JLabel("Casa de Asigurari *");
 		lblCasaDeAsigurari.setForeground(Color.RED);
@@ -105,10 +182,10 @@ public class Reteta {
 		lblCasaDeAsigurari.setBounds(431, 23, 107, 14);
 		panel_2.add(lblCasaDeAsigurari);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(556, 20, 258, 20);
-		panel_2.add(textField_5);
-		textField_5.setColumns(10);
+		txtCasaDeAsigurari = new JTextField();
+		txtCasaDeAsigurari.setBounds(556, 20, 258, 20);
+		panel_2.add(txtCasaDeAsigurari);
+		txtCasaDeAsigurari.setColumns(10);
 		
 		JLabel lblTipAsigurat = new JLabel("Tip Asigurat *");
 		lblTipAsigurat.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -116,19 +193,14 @@ public class Reteta {
 		lblTipAsigurat.setBounds(427, 51, 92, 14);
 		panel_2.add(lblTipAsigurat);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(556, 49, 258, 20);
-		panel_2.add(textField_6);
-		textField_6.setColumns(10);
-		
 		JLabel lblNumarPns = new JLabel("Numar PNS");
 		lblNumarPns.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblNumarPns.setBounds(427, 78, 77, 14);
 		panel_2.add(lblNumarPns);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(556, 80, 59, 20);
-		panel_2.add(comboBox);
+		JComboBox comboBox_NrPNS = new JComboBox();
+		comboBox_NrPNS.setBounds(556, 80, 59, 20);
+		panel_2.add(comboBox_NrPNS);
 		
 		JLabel lblNrFo = new JLabel("Nr FO / RC *");
 		lblNrFo.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -136,10 +208,14 @@ public class Reteta {
 		lblNrFo.setBounds(630, 83, 77, 14);
 		panel_2.add(lblNrFo);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(715, 80, 99, 20);
-		panel_2.add(textField_7);
-		textField_7.setColumns(10);
+		textField_RC = new JTextField();
+		textField_RC.setBounds(715, 80, 99, 20);
+		panel_2.add(textField_RC);
+		textField_RC.setColumns(10);
+		
+		comboBox_TipAsigurat = new JComboBox();
+		comboBox_TipAsigurat.setBounds(556, 45, 258, 20);
+		panel_2.add(comboBox_TipAsigurat);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(BorderFactory.createTitledBorder("Date Reteta"));
@@ -165,19 +241,19 @@ public class Reteta {
 		lblNewLabel_5.setBounds(10, 77, 83, 14);
 		panel_3.add(lblNewLabel_5);
 		
-		textField_8 = new JTextField();
-		textField_8.setBounds(107, 22, 263, 20);
-		panel_3.add(textField_8);
-		textField_8.setColumns(10);
+		textField_SerieReteta = new JTextField();
+		textField_SerieReteta.setBounds(107, 22, 263, 20);
+		panel_3.add(textField_SerieReteta);
+		textField_SerieReteta.setColumns(10);
 		
-		textField_9 = new JTextField();
-		textField_9.setBounds(107, 50, 263, 20);
-		panel_3.add(textField_9);
-		textField_9.setColumns(10);
+		textField_NumarReteta = new JTextField();
+		textField_NumarReteta.setBounds(107, 50, 263, 20);
+		panel_3.add(textField_NumarReteta);
+		textField_NumarReteta.setColumns(10);
 		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(103, 81, 711, 20);
-		panel_3.add(comboBox_1);
+		comboBox_Diagnostic = new JComboBox();
+		comboBox_Diagnostic.setBounds(103, 81, 711, 20);
+		panel_3.add(comboBox_Diagnostic);
 		
 		JLabel lblNewLabel_6 = new JLabel("Data Reteta *");
 		lblNewLabel_6.setForeground(Color.RED);
@@ -191,14 +267,14 @@ public class Reteta {
 		lblNewLabel_7.setBounds(430, 53, 72, 14);
 		panel_3.add(lblNewLabel_7);
 		
-		textField_10 = new JTextField();
-		textField_10.setBounds(557, 18, 257, 20);
-		panel_3.add(textField_10);
-		textField_10.setColumns(10);
+		textField_DataReteta = new JTextField();
+		textField_DataReteta.setBounds(557, 18, 257, 20);
+		panel_3.add(textField_DataReteta);
+		textField_DataReteta.setColumns(10);
 		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(557, 50, 257, 20);
-		panel_3.add(comboBox_2);
+		JComboBox comboBox_TipReteta = new JComboBox();
+		comboBox_TipReteta.setBounds(557, 50, 257, 20);
+		panel_3.add(comboBox_TipReteta);
 		
 		JPanel panel_4 = new JPanel();
 		panel_4.setBorder(BorderFactory.createTitledBorder("Date Medicatie"));
@@ -241,29 +317,29 @@ public class Reteta {
 		lblNewLabel_13.setBounds(424, 80, 78, 14);
 		panel_4.add(lblNewLabel_13);
 		
-		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(111, 27, 263, 20);
-		panel_4.add(comboBox_3);
+		JComboBox comboBox_Compensatie = new JComboBox();
+		comboBox_Compensatie.setBounds(111, 27, 263, 20);
+		panel_4.add(comboBox_Compensatie);
 		
-		JComboBox comboBox_4 = new JComboBox();
-		comboBox_4.setBounds(111, 52, 263, 20);
-		panel_4.add(comboBox_4);
+		JComboBox comboBox_TipLista = new JComboBox();
+		comboBox_TipLista.setBounds(111, 52, 263, 20);
+		panel_4.add(comboBox_TipLista);
 		
-		JComboBox comboBox_5 = new JComboBox();
-		comboBox_5.setBounds(111, 77, 263, 20);
-		panel_4.add(comboBox_5);
+		JComboBox comboBox_CodBoala = new JComboBox();
+		comboBox_CodBoala.setBounds(111, 77, 263, 20);
+		panel_4.add(comboBox_CodBoala);
 		
-		JComboBox comboBox_6 = new JComboBox();
-		comboBox_6.setBounds(561, 27, 253, 20);
-		panel_4.add(comboBox_6);
+		JComboBox comboBox_TipDiagnostic = new JComboBox();
+		comboBox_TipDiagnostic.setBounds(561, 27, 253, 20);
+		panel_4.add(comboBox_TipDiagnostic);
 		
-		JComboBox comboBox_7 = new JComboBox();
-		comboBox_7.setBounds(561, 52, 253, 20);
-		panel_4.add(comboBox_7);
+		comboBox_Medicament = new JComboBox();
+		comboBox_Medicament.setBounds(561, 52, 253, 20);
+		panel_4.add(comboBox_Medicament);
 		
-		JComboBox comboBox_8 = new JComboBox();
-		comboBox_8.setBounds(561, 80, 253, 20);
-		panel_4.add(comboBox_8);
+		JComboBox comboBox_Cantitate = new JComboBox();
+		comboBox_Cantitate.setBounds(561, 80, 253, 20);
+		panel_4.add(comboBox_Cantitate);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 118, 804, 63);
@@ -272,33 +348,38 @@ public class Reteta {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		JButton btnNewButton = new JButton("Adauga");
-		btnNewButton.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton.setBounds(10, 197, 89, 23);
-		panel_4.add(btnNewButton);
+		JButton btnNewButton_Adauga = new JButton("Adauga");
+		btnNewButton_Adauga.setFont(new Font("Arial", Font.BOLD, 12));
+		btnNewButton_Adauga.setBounds(10, 197, 89, 23);
+		panel_4.add(btnNewButton_Adauga);
 		
-		JButton btnNewButton_1 = new JButton("Modifica");
-		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton_1.setBounds(111, 197, 89, 23);
-		panel_4.add(btnNewButton_1);
+		JButton btnNewButton_Modifica = new JButton("Modifica");
+		btnNewButton_Modifica.setFont(new Font("Arial", Font.BOLD, 12));
+		btnNewButton_Modifica.setBounds(111, 197, 89, 23);
+		panel_4.add(btnNewButton_Modifica);
 		
-		JButton btnNewButton_2 = new JButton("Sterge");
-		btnNewButton_2.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton_2.setBounds(210, 197, 89, 23);
-		panel_4.add(btnNewButton_2);
+		JButton btnNewButton_Sterge = new JButton("Sterge");
+		btnNewButton_Sterge.setFont(new Font("Arial", Font.BOLD, 12));
+		btnNewButton_Sterge.setBounds(210, 197, 89, 23);
+		panel_4.add(btnNewButton_Sterge);
 		
-		JButton btnNewButton_3 = new JButton("TIPARESTE");
-		btnNewButton_3.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton_3.setBounds(723, 577, 111, 23);
-		panel.add(btnNewButton_3);
+		JButton btnNewButton_Tipareste = new JButton("TIPARESTE");
+		btnNewButton_Tipareste.setFont(new Font("Arial", Font.BOLD, 12));
+		btnNewButton_Tipareste.setBounds(723, 577, 111, 23);
+		panel.add(btnNewButton_Tipareste);
 		
-		JButton btnNewButton_4 = new JButton("SALVEAZA");
-		btnNewButton_4.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton_4.setBounds(591, 577, 104, 23);
-		panel.add(btnNewButton_4);
+		JButton btnNewButton_Salveaza = new JButton("SALVEAZA");
+		btnNewButton_Salveaza.setFont(new Font("Arial", Font.BOLD, 12));
+		btnNewButton_Salveaza.setBounds(591, 577, 104, 23);
+		panel.add(btnNewButton_Salveaza);
 		
 		frame.setVisible(true);
 		frame.setBounds(100, 100, 860, 660);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		
+		fillComboBoxTipAsigurat();
+		fillComboBoxParafa();
+		fillComboBoxDiagnostic();
+		fillComboBoxMedicament();
 	}
 }
