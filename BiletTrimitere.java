@@ -1,3 +1,4 @@
+
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -28,17 +29,17 @@ import java.awt.event.MouseEvent;
 public class BiletTrimitere {
 	Connection connection = null;
 	
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField textField_NrContract;
+	private JTextField textField_CNP;
+	private JTextField textField_Nume;
+	private JTextField textField_Prenume;
+	private JTextField textField_Tara;
 	private JTextField txtCasaJudeteanaTimisoara;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_9;
-	private JTextField textField_10;
+	private JTextField textField_Serie;
+	private JTextField textField_Numar;
+	private JTextField textField_NrRegistru;
+	private JTextField textField_DataEmitere;
+	private JTextField textField_DataRegistru;
 	private JTable table;
 	private JComboBox comboBox_Investigatii;
 	private JComboBox comboBox_Parafa;
@@ -193,10 +194,10 @@ public class BiletTrimitere {
 		lblNewLabel_1.setBounds(436, 26, 102, 14);
 		panel_1.add(lblNewLabel_1);
 		
-		textField = new JTextField();
-		textField.setBounds(582, 24, 232, 20);
-		panel_1.add(textField);
-		textField.setColumns(10);
+		textField_NrContract = new JTextField();
+		textField_NrContract.setBounds(582, 24, 232, 20);
+		panel_1.add(textField_NrContract);
+		textField_NrContract.setColumns(10);
 		
 		JPanel panel_2 = new JPanel();
 		panel_2.setBorder(BorderFactory.createTitledBorder("Date Pacient"));
@@ -245,25 +246,25 @@ public class BiletTrimitere {
 		lblNewLabel_8.setBounds(435, 75, 72, 14);
 		panel_2.add(lblNewLabel_8);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(115, 23, 233, 20);
-		panel_2.add(textField_1);
-		textField_1.setColumns(10);
+		textField_CNP = new JTextField();
+		textField_CNP.setBounds(115, 23, 233, 20);
+		panel_2.add(textField_CNP);
+		textField_CNP.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(115, 48, 233, 20);
-		panel_2.add(textField_2);
-		textField_2.setColumns(10);
+		textField_Nume = new JTextField();
+		textField_Nume.setBounds(115, 48, 233, 20);
+		panel_2.add(textField_Nume);
+		textField_Nume.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(115, 98, 233, 20);
-		panel_2.add(textField_4);
-		textField_4.setColumns(10);
+		textField_Tara = new JTextField();
+		textField_Tara.setBounds(115, 98, 233, 20);
+		panel_2.add(textField_Tara);
+		textField_Tara.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(115, 73, 233, 20);
-		panel_2.add(textField_3);
-		textField_3.setColumns(10);
+		textField_Prenume = new JTextField();
+		textField_Prenume.setBounds(115, 73, 233, 20);
+		panel_2.add(textField_Prenume);
+		textField_Prenume.setColumns(10);
 		
 		txtCasaJudeteanaTimisoara = new JTextField();
 		txtCasaJudeteanaTimisoara.setFont(new Font("Arial", Font.BOLD, 12));
@@ -311,20 +312,20 @@ public class BiletTrimitere {
 		lblNewLabel_13.setBounds(10, 123, 79, 14);
 		panel_3.add(lblNewLabel_13);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(117, 23, 86, 20);
-		panel_3.add(textField_5);
-		textField_5.setColumns(10);
+		textField_Serie = new JTextField();
+		textField_Serie.setBounds(117, 23, 86, 20);
+		panel_3.add(textField_Serie);
+		textField_Serie.setColumns(10);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(220, 23, 127, 20);
-		panel_3.add(textField_6);
-		textField_6.setColumns(10);
+		textField_Numar = new JTextField();
+		textField_Numar.setBounds(220, 23, 127, 20);
+		panel_3.add(textField_Numar);
+		textField_Numar.setColumns(10);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(116, 50, 231, 20);
-		panel_3.add(textField_7);
-		textField_7.setColumns(10);
+		textField_NrRegistru = new JTextField();
+		textField_NrRegistru.setBounds(116, 50, 231, 20);
+		panel_3.add(textField_NrRegistru);
+		textField_NrRegistru.setColumns(10);
 		
 		comboBox_DiagnosticInitial = new JComboBox();
 		comboBox_DiagnosticInitial.setBounds(116, 96, 698, 20);
@@ -346,19 +347,19 @@ public class BiletTrimitere {
 		lblNewLabel_15.setBounds(436, 71, 79, 14);
 		panel_3.add(lblNewLabel_15);
 		
-		textField_9 = new JTextField();
-		textField_9.setBounds(575, 11, 239, 20);
-		panel_3.add(textField_9);
-		textField_9.setColumns(10);
+		textField_DataEmitere = new JTextField();
+		textField_DataEmitere.setBounds(575, 11, 239, 20);
+		panel_3.add(textField_DataEmitere);
+		textField_DataEmitere.setColumns(10);
 		
 		comboBox_TipInvestigatie = new JComboBox();
 		comboBox_TipInvestigatie.setBounds(575, 36, 239, 20);
 		panel_3.add(comboBox_TipInvestigatie);
 		
-		textField_10 = new JTextField();
-		textField_10.setBounds(575, 68, 239, 20);
-		panel_3.add(textField_10);
-		textField_10.setColumns(10);
+		textField_DataRegistru = new JTextField();
+		textField_DataRegistru.setBounds(575, 68, 239, 20);
+		panel_3.add(textField_DataRegistru);
+		textField_DataRegistru.setColumns(10);
 		
 		comboBox_specialitate = new JComboBox();
 		comboBox_specialitate.setBounds(117, 121, 697, 20);
@@ -416,8 +417,8 @@ public class BiletTrimitere {
 		});
 		scrollPane.setViewportView(table);
 		
-		JButton btnNewButton = new JButton("ADAUGA");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnNewButton_Adauga = new JButton("ADAUGA");
+		btnNewButton_Adauga.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
 					String query="SELECT ID, Investigatii  FROM DetaliiInvestigatii";
@@ -436,12 +437,12 @@ public class BiletTrimitere {
 			
 		});
 		
-		btnNewButton.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton.setBounds(10, 144, 89, 23);
-		panel_4.add(btnNewButton);
+		btnNewButton_Adauga.setFont(new Font("Arial", Font.BOLD, 12));
+		btnNewButton_Adauga.setBounds(10, 144, 89, 23);
+		panel_4.add(btnNewButton_Adauga);
 		
-		JButton btnNewButton_1 = new JButton("MODIFICA");
-		btnNewButton_1.addActionListener(new ActionListener() {
+		JButton btnNewButton_Modifica = new JButton("MODIFICA");
+		btnNewButton_Modifica.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
 					String query="insert into DetaliiInvestigatii ( Investigatii) values(?)";
@@ -460,13 +461,13 @@ public class BiletTrimitere {
 				}
 			}
 		});
-		btnNewButton_1.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton_1.setForeground(new Color(0, 0, 0));
-		btnNewButton_1.setBounds(122, 144, 89, 23);
-		panel_4.add(btnNewButton_1);
+		btnNewButton_Modifica.setFont(new Font("Arial", Font.BOLD, 12));
+		btnNewButton_Modifica.setForeground(new Color(0, 0, 0));
+		btnNewButton_Modifica.setBounds(122, 144, 89, 23);
+		panel_4.add(btnNewButton_Modifica);
 		
-		JButton btnNewButton_2 = new JButton("STERGE");
-		btnNewButton_2.addActionListener(new ActionListener() {
+		JButton btnNewButton_Sterge = new JButton("STERGE");
+		btnNewButton_Sterge.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					
@@ -483,20 +484,20 @@ public class BiletTrimitere {
 				}
 			}
 		});
-		btnNewButton_2.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton_2.setBounds(236, 144, 89, 23);
-		panel_4.add(btnNewButton_2);
+		btnNewButton_Sterge.setFont(new Font("Arial", Font.BOLD, 12));
+		btnNewButton_Sterge.setBounds(236, 144, 89, 23);
+		panel_4.add(btnNewButton_Sterge);
 		
-		JButton btnNewButton_3 = new JButton("SALVEAZA");
-		btnNewButton_3.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton_3.setForeground(new Color(0, 0, 0));
-		btnNewButton_3.setBounds(586, 588, 99, 23);
-		panel.add(btnNewButton_3);
+		JButton btnNewButton_Salveaza = new JButton("SALVEAZA");
+		btnNewButton_Salveaza.setFont(new Font("Arial", Font.BOLD, 12));
+		btnNewButton_Salveaza.setForeground(new Color(0, 0, 0));
+		btnNewButton_Salveaza.setBounds(586, 588, 99, 23);
+		panel.add(btnNewButton_Salveaza);
 		
-		JButton btnNewButton_4 = new JButton("TIPARESTE");
-		btnNewButton_4.setFont(new Font("Arial", Font.BOLD, 12));
-		btnNewButton_4.setBounds(720, 588, 114, 23);
-		panel.add(btnNewButton_4);
+		JButton btnNewButton_Tipareste = new JButton("TIPARESTE");
+		btnNewButton_Tipareste.setFont(new Font("Arial", Font.BOLD, 12));
+		btnNewButton_Tipareste.setBounds(720, 588, 114, 23);
+		panel.add(btnNewButton_Tipareste);
 		
 		frame.setVisible(true);
 		frame.setBounds(100, 100, 860, 660);
@@ -511,3 +512,4 @@ public class BiletTrimitere {
 		fillComboBoxSpecialitate();
 	}
 }
+
