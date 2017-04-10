@@ -24,22 +24,22 @@ public class RaportareCNAS
 {
 	Connection connection = null;
 	
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
+	private JTextField textField_NrContract;
+	private JTextField textField_CNP;
+	private JTextField textField_Nume;
+	private JTextField textField_Prenume;
+	private JTextField textField_Tara;
 	private JTextField txtCasaJudeteanaTimisoara;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTextField textField_10;
-	private JTextField textField_11;
-	private JTextField textField_13;
-	private JTextField textField_14;
-	private JTextField textField_15;
-	private JTextField textField_16;
+	private JTextField textField_Serie;
+	private JTextField textField_Numar;
+	private JTextField textField_Data;
+	private JTextField textField_Specialitate;
+	private JTextField textField_NumarContarct;
+	private JTextField textField_DataServiciu;
+	private JTextField textField_Cantitate;
+	private JTextField textField_Tarif;
+	private JTextField textField_NrFisa;
+	private JTextField textField_DataFisa;
 	private JComboBox comboBox_Parafa;
 	private JComboBox comboBox_TipAsigurat;
 	private JComboBox comboBox_Diagnostic;
@@ -188,13 +188,13 @@ public class RaportareCNAS
 		lblNewLabel.setBounds(450, 25, 105, 14);
 		panel.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setFont(new Font("Arial", Font.BOLD, 12));
-		textField.setText("123456");
-		textField.setBounds(572, 23, 250, 20);
-		panel.add(textField);
-		textField.setColumns(10);
+		textField_NrContract = new JTextField();
+		textField_NrContract.setHorizontalAlignment(SwingConstants.CENTER);
+		textField_NrContract.setFont(new Font("Arial", Font.BOLD, 12));
+		textField_NrContract.setText("123456");
+		textField_NrContract.setBounds(572, 23, 250, 20);
+		panel.add(textField_NrContract);
+		textField_NrContract.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setMaximumSize(new Dimension(1800, 20000));
@@ -208,10 +208,10 @@ public class RaportareCNAS
 		lblNewLabel_2.setBounds(10, 22, 46, 14);
 		panel_1.add(lblNewLabel_2);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(107, 20, 243, 20);
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
+		textField_CNP = new JTextField();
+		textField_CNP.setBounds(107, 20, 243, 20);
+		panel_1.add(textField_CNP);
+		textField_CNP.setColumns(10);
 		
 		JLabel lblNume = new JLabel("Nume *");
 		lblNume.setForeground(Color.RED);
@@ -219,10 +219,10 @@ public class RaportareCNAS
 		lblNume.setBounds(10, 53, 46, 14);
 		panel_1.add(lblNume);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(107, 51, 243, 20);
-		panel_1.add(textField_2);
-		textField_2.setColumns(10);
+		textField_Nume = new JTextField();
+		textField_Nume.setBounds(107, 51, 243, 20);
+		panel_1.add(textField_Nume);
+		textField_Nume.setColumns(10);
 		
 		JLabel lblPrenume = new JLabel("Prenume *");
 		lblPrenume.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -230,10 +230,10 @@ public class RaportareCNAS
 		lblPrenume.setBounds(10, 81, 70, 14);
 		panel_1.add(lblPrenume);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(107, 82, 243, 20);
-		panel_1.add(textField_3);
-		textField_3.setColumns(10);
+		textField_Prenume = new JTextField();
+		textField_Prenume.setBounds(107, 82, 243, 20);
+		panel_1.add(textField_Prenume);
+		textField_Prenume.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Tara origine");
 		lblNewLabel_3.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -241,10 +241,10 @@ public class RaportareCNAS
 		lblNewLabel_3.setBounds(10, 115, 70, 14);
 		panel_1.add(lblNewLabel_3);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(107, 113, 243, 20);
-		panel_1.add(textField_4);
-		textField_4.setColumns(10);
+		textField_Tara = new JTextField();
+		textField_Tara.setBounds(107, 113, 243, 20);
+		panel_1.add(textField_Tara);
+		textField_Tara.setColumns(10);
 		
 		JLabel lblCasaDeAsigurari = new JLabel("Casa de asigurari *");
 		lblCasaDeAsigurari.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -301,15 +301,15 @@ public class RaportareCNAS
 		lblNewLabel_6.setBounds(10, 27, 84, 14);
 		panel_2.add(lblNewLabel_6);
 		
-		textField_6 = new JTextField();
-		textField_6.setBounds(106, 25, 84, 20);
-		panel_2.add(textField_6);
-		textField_6.setColumns(10);
+		textField_Serie = new JTextField();
+		textField_Serie.setBounds(106, 25, 84, 20);
+		panel_2.add(textField_Serie);
+		textField_Serie.setColumns(10);
 		
-		textField_7 = new JTextField();
-		textField_7.setBounds(200, 25, 150, 20);
-		panel_2.add(textField_7);
-		textField_7.setColumns(10);
+		textField_Numar = new JTextField();
+		textField_Numar.setBounds(200, 25, 150, 20);
+		panel_2.add(textField_Numar);
+		textField_Numar.setColumns(10);
 		
 		JLabel lblNewLabel_7 = new JLabel("Data *");
 		lblNewLabel_7.setForeground(Color.RED);
@@ -317,10 +317,10 @@ public class RaportareCNAS
 		lblNewLabel_7.setBounds(10, 62, 46, 14);
 		panel_2.add(lblNewLabel_7);
 		
-		textField_8 = new JTextField();
-		textField_8.setBounds(106, 62, 244, 20);
-		panel_2.add(textField_8);
-		textField_8.setColumns(10);
+		textField_Data = new JTextField();
+		textField_Data.setBounds(106, 62, 244, 20);
+		panel_2.add(textField_Data);
+		textField_Data.setColumns(10);
 		
 		JLabel lblNewLabel_8 = new JLabel("Diagnostic *");
 		lblNewLabel_8.setForeground(Color.RED);
@@ -338,10 +338,10 @@ public class RaportareCNAS
 		lblNewLabel_9.setBounds(10, 128, 72, 14);
 		panel_2.add(lblNewLabel_9);
 		
-		textField_9 = new JTextField();
-		textField_9.setBounds(106, 126, 715, 20);
-		panel_2.add(textField_9);
-		textField_9.setColumns(10);
+		textField_Specialitate = new JTextField();
+		textField_Specialitate.setBounds(106, 126, 715, 20);
+		panel_2.add(textField_Specialitate);
+		textField_Specialitate.setColumns(10);
 		
 		JLabel lblNewLabel_10 = new JLabel("Parafa *");
 		lblNewLabel_10.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -359,10 +359,10 @@ public class RaportareCNAS
 		lblNewLabel_11.setBounds(451, 63, 108, 14);
 		panel_2.add(lblNewLabel_11);
 		
-		textField_10 = new JTextField();
-		textField_10.setBounds(576, 60, 245, 20);
-		panel_2.add(textField_10);
-		textField_10.setColumns(10);
+		textField_NumarContarct = new JTextField();
+		textField_NumarContarct.setBounds(576, 60, 245, 20);
+		panel_2.add(textField_NumarContarct);
+		textField_NumarContarct.setColumns(10);
 		
 		JPanel panel_3 = new JPanel();
 		panel_3.setBorder(BorderFactory.createTitledBorder("Detalii Serviciu Paraclinic"));
@@ -376,10 +376,10 @@ public class RaportareCNAS
 		lblNewLabel_12.setBounds(10, 22, 80, 14);
 		panel_3.add(lblNewLabel_12);
 		
-		textField_11 = new JTextField();
-		textField_11.setBounds(105, 20, 175, 20);
-		panel_3.add(textField_11);
-		textField_11.setColumns(10);
+		textField_DataServiciu = new JTextField();
+		textField_DataServiciu.setBounds(105, 20, 175, 20);
+		panel_3.add(textField_DataServiciu);
+		textField_DataServiciu.setColumns(10);
 		
 		JLabel lblNewLabel_13 = new JLabel("Urgenta?");
 		lblNewLabel_13.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -440,10 +440,10 @@ public class RaportareCNAS
 		lblNewLabel_18.setBounds(10, 155, 69, 14);
 		panel_3.add(lblNewLabel_18);
 		
-		textField_13 = new JTextField();
-		textField_13.setBounds(103, 150, 248, 20);
-		panel_3.add(textField_13);
-		textField_13.setColumns(10);
+		textField_Cantitate = new JTextField();
+		textField_Cantitate.setBounds(103, 150, 248, 20);
+		panel_3.add(textField_Cantitate);
+		textField_Cantitate.setColumns(10);
 		
 		JLabel lblNewLabel_19 = new JLabel("Tarif *");
 		lblNewLabel_19.setFont(new Font("Arial", Font.PLAIN, 12));
@@ -451,30 +451,30 @@ public class RaportareCNAS
 		lblNewLabel_19.setBounds(458, 155, 46, 14);
 		panel_3.add(lblNewLabel_19);
 		
-		textField_14 = new JTextField();
-		textField_14.setBounds(592, 152, 221, 20);
-		panel_3.add(textField_14);
-		textField_14.setColumns(10);
+		textField_Tarif = new JTextField();
+		textField_Tarif.setBounds(592, 152, 221, 20);
+		panel_3.add(textField_Tarif);
+		textField_Tarif.setColumns(10);
 		
 		JLabel lblNumarFisa = new JLabel("Numar Fisa");
 		lblNumarFisa.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblNumarFisa.setBounds(10, 176, 80, 14);
 		panel_3.add(lblNumarFisa);
 		
-		textField_15 = new JTextField();
-		textField_15.setBounds(103, 181, 248, 20);
-		panel_3.add(textField_15);
-		textField_15.setColumns(10);
+		textField_NrFisa = new JTextField();
+		textField_NrFisa.setBounds(103, 181, 248, 20);
+		panel_3.add(textField_NrFisa);
+		textField_NrFisa.setColumns(10);
 		
 		JLabel lblNewLabel_20 = new JLabel("Data Fisa");
 		lblNewLabel_20.setFont(new Font("Arial", Font.PLAIN, 12));
 		lblNewLabel_20.setBounds(457, 184, 69, 14);
 		panel_3.add(lblNewLabel_20);
 		
-		textField_16 = new JTextField();
-		textField_16.setBounds(592, 181, 221, 20);
-		panel_3.add(textField_16);
-		textField_16.setColumns(10);
+		textField_DataFisa = new JTextField();
+		textField_DataFisa.setBounds(592, 181, 221, 20);
+		panel_3.add(textField_DataFisa);
+		textField_DataFisa.setColumns(10);
 		
 		JButton btnNewButton_Salveaza = new JButton("SALVEAZA");
 		btnNewButton_Salveaza.setFont(new Font("Arial", Font.BOLD, 12));
