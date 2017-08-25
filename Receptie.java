@@ -428,7 +428,7 @@ public class Receptie extends JPanel {
 					pst3.setString(1, textCNP.getText());
 					pst3.execute();
 					
-					JOptionPane.showMessageDialog(null, "Programare Stearsa!");
+					JOptionPane.showMessageDialog(null, "Programarea a fost Stearsa!");
 					
 				} catch(Exception ex) 
 				{
